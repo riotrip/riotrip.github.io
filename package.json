@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:css": "npx tailwindcss -i ./src/input.css -o ./dist/css/style.css --watch"
+    "build:css": "npx tailwindcss -i ./src/input.css -o ./dist/css/style.css --watch",
+    "deploy": "npx tailwindcss -i ./src/input.css -o ./dist/css/style.css && xcopy /E /I /Y public\\img dist\\img && xcopy /E /I /Y src\\js dist\\js"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
