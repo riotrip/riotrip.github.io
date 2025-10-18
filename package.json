@@ -1,12 +1,21 @@
 {
-  "name": "riotrip.github.io",
+  "name": "rio-portfolio",
   "version": "1.0.0",
-  "description": "<a href=\"https://riotrip.github.io/\" target=\"_blank\">Link</a>",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tailwindcss -i ./src/css/input.css -o ./docs/css/output.css --watch"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:css": "npx tailwindcss -i ./src/input.css -o ./dist/css/style.css --watch"
   },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.18",
+    "vite": "^4.5.14"
+  },
+  "description": "<a href=\"https://riotrip.github.io/\" target=\"_blank\">Link</a>",
+  "main": "postcss.config.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/riotrip/riotrip.github.io.git"
@@ -17,13 +26,5 @@
   "bugs": {
     "url": "https://github.com/riotrip/riotrip.github.io/issues"
   },
-  "homepage": "https://github.com/riotrip/riotrip.github.io#readme",
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.7"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.7"
-  }
+  "homepage": "https://github.com/riotrip/riotrip.github.io#readme"
 }

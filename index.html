@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="./dist/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="./img/logo.png" />
+  </head>
+  <body class="font-sans bg-white">
+    <!-- Hero Section -->
+    <section
+      id="hero"
+      class="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-white px-4 py-16 md:py-20"
+    >
+      <div class="max-w-md w-full mx-auto text-center">
+        <div class="relative mb-8">
+          <img
+            src="./img/profile.png"
+            alt="Rio Tri Prayogo"
+            class="relative z-10 w-32 h-32 md:w-48 md:h-48 rounded-full object-cover mx-auto animate-float"
+          />
+          <div
+            class="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
+            <h1
+              class="text-3xl sm:text-4xl md:text-6xl font-bold text-black text-center w-full absolute inset-0 flex items-center justify-center"
+            >
+              Rio Tri<br />Prayogo
+            </h1>
+          </div>
+        </div>
+
+        <div class="flex justify-center space-x-4">
+          <a
+            href="https://instagram.com/rio_t.p"
+            target="_blank"
+            rel="noopener"
+            class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-pink-300 text-pink-600 hover:border-transparent hover:bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:text-white transition-all duration-300"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://github.com/riotrip"
+            target="_blank"
+            rel="noopener"
+            class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-gray-300 text-gray-700 hover:border-transparent hover:bg-gray-800 hover:text-white transition-all duration-300"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://linkedin.com/in/rio-tri-prayogo"
+            target="_blank"
+            rel="noopener"
+            class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-blue-300 text-blue-600 hover:border-transparent hover:bg-blue-600 hover:text-white transition-all duration-300"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section
+      id="about"
+      class="bg-white min-h-screen flex items-center py-16 md:py-20"
+    >
+      <div class="container mx-auto px-4 max-w-6xl w-full">
+        <h2
+          class="text-3xl font-semibold mb-16 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-16 after:h-1 after:bg-primary"
+        >
+          ABOUT
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 mb-12">
+          <div
+            class="md:col-span-2 md:row-span-2 bg-primary text-white p-6 rounded-lg animate-fade-in-up hover:-translate-y-1 transition-transform duration-300"
+          >
+            <h3 class="text-xl font-medium mb-4">Who Am I?</h3>
+            <p class="leading-relaxed">
+              An Informatics Engineering student at State Polytechnic of Malang
+              with a strong passion for backend development and system logic.
+              Actively involved in campus organizations, developing leadership
+              and collaborative skills alongside technical expertise in coding
+              and problem-solving. Eager to apply this blend of technical
+              proficiency and team-oriented experience to contribute to a
+              professional software engineering team.
+            </p>
+          </div>
+
+          <div
+            class="md:col-span-2 bg-accent p-6 rounded-lg animate-fade-in-up hover:-translate-y-1 transition-transform duration-300"
+            style="animation-delay: 0.1s"
+          >
+            <h3 class="text-xl font-medium mb-4">Approach</h3>
+            <p class="text-secondary">
+              Each project begins with research and understanding, followed by
+              structured ideation and meticulous execution.
+            </p>
+          </div>
+
+          <div
+            class="bg-white border border-accent p-6 rounded-lg animate-fade-in-up hover:-translate-y-1 transition-transform duration-300"
+            style="animation-delay: 0.2s"
+          >
+            <h3 class="text-xl font-medium mb-4">Logo</h3>
+            <img
+              src="./img/logo.png"
+              alt="Logo"
+              class="relative z-10 w-16 h-16 md:w-32 md:h-32 rounded-full object-cover mx-auto"
+            />
+          </div>
+
+          <div
+            class="bg-accent p-6 rounded-lg animate-fade-in-up hover:-translate-y-1 transition-transform duration-300"
+            style="animation-delay: 0.3s"
+          >
+            <h3 class="text-xl font-medium mb-4">Tech Stack</h3>
+            <p class="text-secondary">
+              Proficient in Laravel, PHP, MySQL, Java, Python, HTML, CSS,
+              JavaScript, and Git for effective version control. Internet of
+              Things (IoT) integration and development.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section
+      id="projects"
+      class="bg-gradient-to-br from-background to-white min-h-screen flex items-center py-16 md:py-20 mb-12 md:mb-0"
+    >
+      <div class="container mx-auto px-4 max-w-6xl w-full">
+        <h2
+          class="text-3xl font-semibold mb-16 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-16 after:h-1 after:bg-primary"
+        >
+          PROJECTS
+        </h2>
+
+        <div
+          class="carousel-container bg-white rounded-lg shadow-xl overflow-hidden"
+        >
+          <div class="carousel-track">
+            <div class="carousel-slide p-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                  class="h-80 flex items-center justify-center bg-[length:20px_20px] bg-[linear-gradient(#eaeaea_1px,transparent_1px),linear-gradient(90deg,#eaeaea_1px,transparent_1px)] rounded-lg"
+                >
+                  <div class="text-center">
+                    <div class="text-2xl font-medium text-primary">
+                      CareReport<br />
+                    </div>
+                    <div class="text-xl font-normal text-primary">
+                      Sistem Layanan Pelaporan Masyarakat
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col justify-center">
+                  <div
+                    class="text-sm text-secondary mb-2 uppercase tracking-wide"
+                  >
+                    FULL-STACK DEVELOPER • WEBSITE • 2022
+                  </div>
+                  <h3 class="text-2xl font-medium mb-4 text-primary">
+                    Public Complaint Reporting System
+                  </h3>
+                  <p class="mb-4 text-secondary leading-relaxed">
+                    A Web-Based Public Complaint Platform A centralized platform
+                    for citizens to submit complaints and track their resolution
+                    status in real-time.
+                  </p>
+                  <p class="mb-6 text-secondary leading-relaxed">
+                    The system features an automated escalation workflow to
+                    ensure timely responses from authorities, enhancing
+                    transparency and accountability in public service.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >Laravel</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >Bootstrap</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >MySQL</span
+                    >
+                  </div>
+                  <a
+                    href="https://github.com/riotrip/aduan-masyarakat-beta/"
+                    target="_blank"
+                    class="inline-flex items-center font-medium text-primary hover:text-secondary transition-colors"
+                  >
+                    View Project Details
+                    <i class="fas fa-arrow-right ml-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide p-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                  class="h-80 flex items-center justify-center bg-[length:20px_20px] bg-[linear-gradient(#eaeaea_1px,transparent_1px),linear-gradient(90deg,#eaeaea_1px,transparent_1px)] rounded-lg"
+                >
+                  <div class="text-center">
+                    <div class="text-2xl font-medium text-primary">
+                      Kas Online
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col justify-center">
+                  <div
+                    class="text-sm text-secondary mb-2 uppercase tracking-wide"
+                  >
+                    PROJECTS MANAGER • JAVA • 2023
+                  </div>
+                  <h3 class="text-2xl font-medium mb-4 text-primary">
+                    Classroom Cash Management System
+                  </h3>
+                  <p class="mb-4 text-secondary leading-relaxed">
+                    A digital cash management system for classroom finances,
+                    enabling students to record and track cash transactions
+                    efficiently.
+                  </p>
+                  <p class="mb-6 text-secondary leading-relaxed">
+                    Features include income/expense tracking, payment
+                    monitoring, and real-time balance overview.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >Java</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >Cash Flow</span
+                    >
+                  </div>
+                  <a
+                    href="https://github.com/riotrip/kas-online-java"
+                    target="_blank"
+                    class="inline-flex items-center font-medium text-primary hover:text-secondary transition-colors"
+                  >
+                    View Project Details
+                    <i class="fas fa-arrow-right ml-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide p-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                  class="h-80 flex items-center justify-center bg-[length:20px_20px] bg-[linear-gradient(#eaeaea_1px,transparent_1px),linear-gradient(90deg,#eaeaea_1px,transparent_1px)] rounded-lg"
+                >
+                  <div class="text-center">
+                    <div class="text-2xl font-medium text-primary">
+                      SiPresma<br />
+                    </div>
+                    <div class="text-xl font-normal text-primary">
+                      Sistem Pencatatan Prestasi Mahasiswa
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col justify-center">
+                  <div
+                    class="text-sm text-secondary mb-2 uppercase tracking-wide"
+                  >
+                    FRONT-END DEVELOPER • WEBSITE • 2024
+                  </div>
+                  <h3 class="text-2xl font-medium mb-4 text-primary">
+                    Student Achievement Recording System
+                  </h3>
+                  <p class="mb-4 text-secondary leading-relaxed">
+                    This web-based application enables students to upload and
+                    securely store a digital portfolio of their achievements.
+                  </p>
+                  <p class="mb-6 text-secondary leading-relaxed">
+                    Developed using HTML, CSS, and PHP, the system facilitates
+                    centralized and organized management of accomplishments,
+                    making it easier for students to track and present their
+                    records.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >PHP</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >HTML/CSS</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >Bootstrap</span
+                    >
+                  </div>
+                  <a
+                    href="https://github.com/Kiaakk/PBL-PRESMA"
+                    target="_blank"
+                    class="inline-flex items-center font-medium text-primary hover:text-secondary transition-colors"
+                  >
+                    View Project Details
+                    <i class="fas fa-arrow-right ml-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide p-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                  class="h-80 flex items-center justify-center bg-[length:20px_20px] bg-[linear-gradient(#eaeaea_1px,transparent_1px),linear-gradient(90deg,#eaeaea_1px,transparent_1px)] rounded-lg"
+                >
+                  <div class="text-center">
+                    <div class="text-2xl font-medium text-primary">
+                      Newsphere<br />
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col justify-center">
+                  <div
+                    class="text-sm text-secondary mb-2 uppercase tracking-wide"
+                  >
+                    BACK-END DEVELOPER • WEBSITE • 2024
+                  </div>
+                  <h3 class="text-2xl font-medium mb-4 text-primary">
+                    News Management System
+                  </h3>
+                  <p class="mb-4 text-secondary leading-relaxed">
+                    A dynamic news website application that utilizes MongoDB as
+                    its primary database. This NoSQL solution allows for
+                    flexible and scalable storage of news articles, categories,
+                    tags, and author information, enabling efficient content
+                    management and retrieval.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >PHP</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >MongoDB</span
+                    >
+                  </div>
+                  <a
+                    href="https://github.com/clockingoffbye/news-website"
+                    target="_blank"
+                    class="inline-flex items-center font-medium text-primary hover:text-secondary transition-colors"
+                  >
+                    View Project Details
+                    <i class="fas fa-arrow-right ml-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide p-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                  class="h-80 flex items-center justify-center bg-[length:20px_20px] bg-[linear-gradient(#eaeaea_1px,transparent_1px),linear-gradient(90deg,#eaeaea_1px,transparent_1px)] rounded-lg"
+                >
+                  <div class="text-center">
+                    <div class="text-2xl font-medium text-primary">SiPRAK</div>
+                    <div class="text-xl font-normal text-primary">
+                      Sistem Informasi Pelaporan dan Perbaikan Fasilitas Kampus
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col justify-center">
+                  <div
+                    class="text-sm text-secondary mb-2 uppercase tracking-wide"
+                  >
+                    BACK-END DEVELOPER • WEBSITE • 2025
+                  </div>
+                  <h3 class="text-2xl font-medium mb-4 text-primary">
+                    Campus Facility Reporting and Repair Information System
+                  </h3>
+                  <p class="mb-4 text-secondary leading-relaxed">
+                    A web-based application developed to facilitate the
+                    reporting, handling, and monitoring of facility repairs
+                    within the Information Technology Department at Malang State
+                    Polytechnic.
+                  </p>
+                  <p class="mb-4 text-secondary leading-relaxed">
+                    The system was designed to replace a flawed manual process
+                    that was poorly documented and often led to significant
+                    delays in addressing facility issues, thereby improving
+                    operational efficiency and accountability.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >Laravel</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >Tailwind CSS</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >MySQL</span
+                    >
+                  </div>
+                  <a
+                    href="https://github.com/naufal11705/PBL-SARPRAS"
+                    target="_blank"
+                    class="inline-flex items-center font-medium text-primary hover:text-secondary transition-colors"
+                  >
+                    View Project Details
+                    <i class="fas fa-arrow-right ml-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide p-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                  class="h-80 flex items-center justify-center bg-[length:20px_20px] bg-[linear-gradient(#eaeaea_1px,transparent_1px),linear-gradient(90deg,#eaeaea_1px,transparent_1px)] rounded-lg"
+                >
+                  <div class="text-center">
+                    <div class="text-2xl font-medium text-primary">
+                      QRAFFITI
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col justify-center">
+                  <div
+                    class="text-sm text-secondary mb-2 uppercase tracking-wide"
+                  >
+                    FULL-STACK DEVELOPER • WEBSITE • 2025
+                  </div>
+                  <h3 class="text-2xl font-medium mb-4 text-primary">
+                    QR Code Generator Application
+                  </h3>
+                  <p class="mb-4 text-secondary leading-relaxed">
+                    A user-friendly web application designed to create QR codes
+                    from any provided text or URL. The tool offers a
+                    straightforward interface for quick generation and easy
+                    download of QR code images for seamless sharing and use.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >Python</span
+                    >
+                    <span
+                      class="px-3 py-1 bg-accent text-secondary text-sm rounded"
+                      >Flask</span
+                    >
+                  </div>
+                  <a
+                    href="https://qraffiti.vercel.app/"
+                    target="_blank"
+                    class="inline-flex items-center font-medium text-primary hover:text-secondary transition-colors"
+                  >
+                    View Project Details
+                    <i class="fas fa-arrow-right ml-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-center items-center py-8 gap-4">
+            <button
+              class="carousel-prev w-11 h-11 bg-white border border-accent rounded-full flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm"
+            >
+              <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <div class="carousel-dots flex gap-3"></div>
+
+            <button
+              class="carousel-next w-11 h-11 bg-white border border-accent rounded-full flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm"
+            >
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section
+      id="experience"
+      class="bg-white min-h-screen flex items-center py-16 md:py-20 mb-12 md:mb-0"
+    >
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2
+          class="text-3xl font-semibold mb-16 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-16 after:h-1 after:bg-primary"
+        >
+          EXPERIENCE
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 md:grid-rows-2 gap-6">
+          <div
+            class="bg-white border border-accent rounded-lg p-6 relative hover:-translate-y-1 hover:shadow-md transition-all duration-300 animate-fade-in-up"
+          >
+            <div
+              class="absolute -top-2 right-5 bg-primary text-white px-3 py-1 rounded text-sm font-semibold"
+            >
+              2022
+            </div>
+            <h3 class="text-xl font-medium mb-2 text-primary">
+              Digital Marketing & Wordpress Developer
+            </h3>
+            <p class="text-secondary mb-3">Indoweb.id - <i>Internship</i></p>
+            <p class="text-primary mb-4">
+              During my internship at Indoweb.id, I gained hands-on experience
+              in WordPress development and digital marketing, contributing to
+              website customization, responsive design, and campaign execution
+              while learning to analyze performance metrics.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-accent text-secondary text-xs rounded"
+                >WordPress Development</span
+              >
+              <span class="px-2 py-1 bg-accent text-secondary text-xs rounded"
+                >Digital Marketing</span
+              >
+              <span class="px-2 py-1 bg-accent text-secondary text-xs rounded"
+                >Content Creation</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="bg-white border border-accent rounded-lg p-6 relative hover:-translate-y-1 hover:shadow-md transition-all duration-300 animate-fade-in-up"
+            style="animation-delay: 0.1s"
+          >
+            <div
+              class="absolute -top-2 right-5 bg-primary text-white px-3 py-1 rounded text-sm font-semibold"
+            >
+              2024 - 2025
+            </div>
+            <h3 class="text-xl font-medium mb-2 text-primary">
+              Staff Advocacy and Welfare Ministry
+            </h3>
+            <p class="text-secondary mb-3">
+              Student Executive Board State Polytechnic of Malang-
+              <i>Organizations</i>
+            </p>
+            <p class="text-primary mb-4">
+              As a Staff Member of the Advocacy and Welfare Ministry, I
+              advocated for student rights, organized campaigns, facilitated
+              student-administration communication, and coordinated welfare
+              programs, developing leadership and communication skills.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-accent text-secondary text-xs rounded"
+                >Advocacy & Welfare</span
+              >
+              <span class="px-2 py-1 bg-accent text-secondary text-xs rounded"
+                >Public Speaking</span
+              >
+              <span class="px-2 py-1 bg-accent text-secondary text-xs rounded"
+                >Team Leadership</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="bg-white border border-accent rounded-lg p-6 relative hover:-translate-y-1 hover:shadow-md transition-all duration-300 animate-fade-in-up"
+            style="animation-delay: 0.1s"
+          >
+            <div
+              class="absolute -top-2 right-5 bg-primary text-white px-3 py-1 rounded text-sm font-semibold"
+            >
+              2025 - Present
+            </div>
+            <h3 class="text-xl font-medium mb-2 text-primary">
+              Vice Minister of Finance Advocacy and Welfare Ministry
+            </h3>
+            <p class="text-secondary mb-3">
+              Student Executive Board State Polytechnic of Malang-
+              <i>Organizations</i>
+            </p>
+            <p class="text-primary mb-4">
+              As Vice Minister of Finance in the Advocacy and Welfare Ministry,
+              I oversee financial planning and management of welfare
+              initiatives, including scholarships, tuition assistance, and
+              insurance programs. My responsibilities include budgeting,
+              fundraising, financial reporting, and resource allocation to
+              support student welfare services.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-accent text-secondary text-xs rounded"
+                >Public Relations</span
+              >
+              <span class="px-2 py-1 bg-accent text-secondary text-xs rounded"
+                >Team Coordination</span
+              >
+              <span class="px-2 py-1 bg-accent text-secondary text-xs rounded"
+                >Financial Management</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section
+      id="education"
+      class="bg-gradient-to-br from-background to-white min-h-screen flex items-center py-16 md:py-20"
+    >
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl font-semibold mb-16 section-title">EDUCATION</h2>
+
+        <div class="timeline">
+          <div class="timeline-item left animate-fade-in">
+            <div class="timeline-content">
+              <div class="text-sm text-gray-500 mb-2">2011 - 2016</div>
+              <h3 class="text-xl font-medium mb-2">Elementary School</h3>
+              <p class="text-gray-600 mb-2">SDN 2 Kepatihan</p>
+            </div>
+          </div>
+
+          <div class="timeline-item right animate-fade-in">
+            <div class="timeline-content">
+              <div class="text-sm text-gray-500 mb-2">2017 - 2019</div>
+              <h3 class="text-xl font-medium mb-2">Junior High School</h3>
+              <p class="text-gray-600 mb-2">SMPN 3 Tulungagung</p>
+            </div>
+          </div>
+
+          <div class="timeline-item left animate-fade-in">
+            <div class="timeline-content">
+              <div class="text-sm text-gray-500 mb-2">2020 - 2022</div>
+              <h3 class="text-xl font-medium mb-2">Senior High School</h3>
+              <p class="text-gray-600 mb-2">
+                SMKN 1 Boyolangu - <i>Software Engineering</i>
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item right animate-fade-in">
+            <div class="timeline-content">
+              <div class="text-sm text-gray-500 mb-2">2023 - Present</div>
+              <h3 class="text-xl font-medium mb-2">University</h3>
+              <p class="text-gray-600 mb-2">
+                State Polytechnic of Malang - <i>Informatics Engineering</i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="bg-white min-h-screen flex items-center py-16 md:py-20"
+    >
+      <div class="container mx-auto px-4 max-w-6xl">
+        <h2
+          class="text-3xl font-semibold mb-16 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-16 after:h-1 after:bg-primary"
+        >
+          CONTACT
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div
+            class="bg-primary text-white p-8 text-center rounded-lg hover:-translate-y-1 transition-transform duration-300 animate-fade-in-up"
+          >
+            <i class="fas fa-envelope text-3xl mb-4"></i>
+            <h3 class="text-xl font-medium mb-2">Email</h3>
+            <a href="mailto:riotriprayogo31@gmail.com" class="text-accent"
+              >riotriprayogo31@gmail.com</a
+            >
+          </div>
+
+          <div
+            class="bg-accent p-8 text-center rounded-lg hover:-translate-y-1 transition-transform duration-300 animate-fade-in-up"
+            style="animation-delay: 0.1s"
+          >
+            <i class="fas fa-map-marker-alt text-3xl mb-4 text-primary"></i>
+            <h3 class="text-xl font-medium mb-2 text-primary">Location</h3>
+            <p class="text-secondary">Indonesia</p>
+          </div>
+        </div>
+
+        <div
+          class="bg-white border-accent p-8 rounded-lg text-center animate-fade-in-up"
+          style="animation-delay: 0.3s"
+        >
+          <h3 class="text-xl font-medium mb-6 text-primary">
+            LET'S WORK TOGETHER
+          </h3>
+          <p class="text-secondary mb-8 max-w-2xl mx-auto">
+            I'm always interested in new opportunities and collaborations.
+            Whether you have a project in mind or just want to say hello, feel
+            free to reach out!
+          </p>
+
+          <div class="flex justify-center space-x-6">
+            <a
+              href="https://instagram.com/riotrip"
+              target="_blank"
+              class="w-12 h-12 flex items-center justify-center bg-white text-secondary hover:bg-primary hover:text-white transition-all duration-300 border border-accent rounded-lg"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://github.com/riotrip"
+              target="_blank"
+              class="w-12 h-12 flex items-center justify-center bg-white text-secondary hover:bg-primary hover:text-white transition-all duration-300 border border-accent rounded-lg"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="https://linkedin.com/in/rio-tri-prayogo"
+              target="_blank"
+              class="w-12 h-12 flex items-center justify-center bg-white text-secondary hover:bg-primary hover:text-white transition-all duration-300 border border-accent rounded-lg"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script type="module" src="./src/js/main.js"></script>
+  </body>
+</html>
