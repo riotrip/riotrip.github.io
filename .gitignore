@@ -5,7 +5,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Build outputs (keep dist for GitHub Pages)
+# Build outputs
+dist/
 build/
 
 # Vite

@@ -7,7 +7,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "build:css": "npx tailwindcss -i ./src/input.css -o ./dist/css/style.css --watch",
-    "deploy": "npx tailwindcss -i ./src/input.css -o ./dist/css/style.css && xcopy /E /I /Y public\\img dist\\img && xcopy /E /I /Y src\\js dist\\js"
+    "deploy": "npx tailwindcss -i ./src/input.css -o ./docs/css/style.css && xcopy /E /I /Y public\\img docs\\img && xcopy /E /I /Y src\\js docs\\js"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
