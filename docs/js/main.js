@@ -45,7 +45,7 @@ class Carousel {
     
     this.slides.forEach((slide, index) => {
       const dot = document.createElement('span');
-      dot.className = 'carousel-dot w-2.5 h-2.5 rounded-full bg-accent cursor-pointer transition-colors duration-300';
+      dot.className = 'carousel-dot';
       dot.setAttribute('data-slide', index);
       
       if (index === 0) {
@@ -98,34 +98,125 @@ class Carousel {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+class NavigationHighlight {
+  constructor() {
+    this.navItems = document.querySelectorAll('.nav-link');
+    this.sections = [];
+    this.progressBar = document.querySelector('.scroll-progress-bar');
+    
+    this.navItems.forEach(item => {
+      const sectionId = item.getAttribute('data-section');
+      const section = document.getElementById(sectionId);
+      if (section) {
+        this.sections.push({ id: sectionId, element: section });
+      }
+    });
+    
+    this.init();
+  }
+  
+  init() {
+    window.addEventListener('scroll', () => this.onScroll());
+    this.onScroll();
+  }
+  
+  onScroll() {
+    const scrollPosition = window.scrollY + window.innerHeight / 3;
+    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    
+    // Update progress bar
+    if (this.progressBar) {
+      this.progressBar.style.height = `${scrollPercent}%`;
+    }
+    
+    let currentSection = this.sections[0]?.id;
+    
+    this.sections.forEach(section => {
+      if (section.element.offsetTop <= scrollPosition) {
+        currentSection = section.id;
+      }
+    });
+    
+    this.navItems.forEach(item => {
+      const isActive = item.getAttribute('data-section') === currentSection;
+      item.classList.toggle('active', isActive);
+    });
+  }
+}
+
+class ScrollReveal {
+  constructor() {
+    this.elements = document.querySelectorAll('.info-card, .exp-card, .exp-card-alt, .edu-item, .project-card, .exp-subsection');
+    this.init();
+  }
+  
+  init() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    this.elements.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  }
+}
+
+class ParallaxEffect {
+  constructor() {
+    this.bgTexts = document.querySelectorAll('.hero-bg-text, .contact-bg-text');
+    this.init();
+  }
+  
+  init() {
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      this.bgTexts.forEach(el => {
+        const speed = 0.3;
+        el.style.transform = `translate(-50%, calc(-50% + ${scrolled * speed}px)) rotate(-8deg)`;
+      });
+    });
+  }
+}
+
+class MouseFollow {
+  constructor() {
+    this.heroImage = document.querySelector('.hero-image-container');
+    if (this.heroImage) {
+      this.init();
+    }
+  }
+  
+  init() {
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      
+      this.heroImage.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  }
+}
+
+function initializeApp() {
   const carouselContainers = document.querySelectorAll('.carousel-container');
   carouselContainers.forEach(container => {
     new Carousel(container);
   });
   
-  const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.animate-fade-in-up');
-    
-    elements.forEach(element => {
-      const elementTop = element.getBoundingClientRect().top;
-      const elementVisible = 150;
-      
-      if (elementTop < window.innerHeight - elementVisible) {
-        element.style.opacity = "1";
-        element.style.transform = "translateY(0)";
-      }
-    });
-  };
+  new NavigationHighlight();
   
-  window.addEventListener('scroll', animateOnScroll);
-  animateOnScroll(); 
+  new ScrollReveal();
   
-  const progressElements = document.querySelectorAll('.circular-progress');
-  progressElements.forEach(progress => {
-    const progressValue = progress.getAttribute('data-progress') || '85';
-    progress.style.setProperty('--progress', `${progressValue}%`);
-  });
+  new ParallaxEffect();
+  
+  new MouseFollow();
   
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -139,4 +230,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-});
+  
+  document.body.style.opacity = '0';
+  setTimeout(() => {
+    document.body.style.transition = 'opacity 0.5s ease';
+    document.body.style.opacity = '1';
+  }, 100);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+  initializeApp();
+}
