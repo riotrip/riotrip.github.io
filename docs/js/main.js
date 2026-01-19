@@ -12,7 +12,6 @@ class Carousel {
     this.nextBtn = container.querySelector('.carousel-next');
     
     this.currentSlide = 0;
-    this.slideWidth = this.slides[0].getBoundingClientRect().width;
     this.autoPlayInterval = null;
     
     this.init();
@@ -23,8 +22,6 @@ class Carousel {
     
     this.dots = this.container.querySelectorAll('.carousel-dot');
     
-    this.setSlidePositions();
-    
     if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.prevSlide());
     if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.nextSlide());
     
@@ -34,14 +31,8 @@ class Carousel {
     
     this.startAutoPlay();
     
-    this.track.addEventListener('mouseenter', () => this.stopAutoPlay());
-    this.track.addEventListener('mouseleave', () => this.startAutoPlay());
-    
-    window.addEventListener('resize', () => {
-      this.slideWidth = this.slides[0].getBoundingClientRect().width;
-      this.setSlidePositions();
-      this.goToSlide(this.currentSlide);
-    });
+    this.container.addEventListener('mouseenter', () => this.stopAutoPlay());
+    this.container.addEventListener('mouseleave', () => this.startAutoPlay());
   }
   
   generateDots() {
@@ -61,14 +52,8 @@ class Carousel {
     });
   }
   
-  setSlidePositions() {
-    this.slides.forEach((slide, index) => {
-      slide.style.left = `${this.slideWidth * index}px`;
-    });
-  }
-  
   goToSlide(slideIndex) {
-    this.track.style.transform = `translateX(-${this.slideWidth * slideIndex}px)`;
+    this.track.style.transform = `translateX(-${slideIndex * 100}%)`;
     this.currentSlide = slideIndex;
     this.updateDots();
   }
