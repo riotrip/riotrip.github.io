@@ -31,9 +31,10 @@
     <script type="module">
       import { partialsLoader } from "./js/partials-loader.js";
 
-      // Wait for partials to load, then initialize main.js
       document.addEventListener("partialsLoaded", () => {
-        import("./js/main.js");
+        const script = document.createElement("script");
+        script.src = "./js/main.js";
+        document.body.appendChild(script);
       });
     </script>
   </body>

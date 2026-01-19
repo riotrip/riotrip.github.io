@@ -2,7 +2,11 @@ class Carousel {
   constructor(container) {
     this.container = container;
     this.track = container.querySelector('.carousel-track');
+    if (!this.track) return;
+    
     this.slides = Array.from(this.track.children);
+    if (this.slides.length === 0) return;
+    
     this.dotsContainer = container.querySelector('.carousel-dots');
     this.prevBtn = container.querySelector('.carousel-prev');
     this.nextBtn = container.querySelector('.carousel-next');
@@ -21,8 +25,8 @@ class Carousel {
     
     this.setSlidePositions();
     
-    this.prevBtn.addEventListener('click', () => this.prevSlide());
-    this.nextBtn.addEventListener('click', () => this.nextSlide());
+    if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.prevSlide());
+    if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.nextSlide());
     
     this.dots.forEach((dot, index) => {
       dot.addEventListener('click', () => this.goToSlide(index));
@@ -41,6 +45,7 @@ class Carousel {
   }
   
   generateDots() {
+    if (!this.dotsContainer) return;
     this.dotsContainer.innerHTML = '';
     
     this.slides.forEach((slide, index) => {
