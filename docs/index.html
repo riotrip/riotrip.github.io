@@ -18,6 +18,14 @@
     <link rel="icon" type="image/png" href="./img/logo.png" />
   </head>
   <body class="bg-mono-black text-mono-white overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-content">
+        <div class="loading-ring"></div>
+        <img src="./img/navlogo.png" alt="Logo" class="loading-logo" />
+      </div>
+    </div>
+
     <!-- Partials will be loaded here -->
     <div data-partial="./partials/nav.html"></div>
     <div data-partial="./partials/hero.html"></div>
@@ -35,6 +43,15 @@
         const script = document.createElement("script");
         script.src = "./js/main.js";
         document.body.appendChild(script);
+
+        // Hide loading screen after content is ready
+        setTimeout(() => {
+          const loadingScreen = document.getElementById("loading-screen");
+          loadingScreen.classList.add("loading-hidden");
+          setTimeout(() => {
+            loadingScreen.style.display = "none";
+          }, 500);
+        }, 3000);
       });
     </script>
   </body>
