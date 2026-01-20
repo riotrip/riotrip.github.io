@@ -825,28 +825,34 @@ body {
   background: linear-gradient(135deg, var(--mono-gray), var(--mono-black));
 }
 
+.projects-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
 .carousel-container {
   overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
 .carousel-track {
   display: flex;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
 }
 
 .carousel-slide {
+  width: 100%;
   min-width: 100%;
   flex-shrink: 0;
-  padding: 0 clamp(0.5rem, 2vw, 2rem);
 }
 
 .project-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: row;
   gap: clamp(1.5rem, 4vw, 4rem);
   align-items: center;
+  padding: 0 clamp(0.5rem, 2vw, 2rem);
 }
 
 .project-visual {
@@ -859,6 +865,8 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  flex: 1;
+  min-width: 0;
 }
 
 .project-visual::before {
@@ -886,6 +894,8 @@ body {
   font-size: clamp(1.5rem, 4vw, 3rem);
   letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .project-name-jp {
@@ -897,6 +907,8 @@ body {
 
 .project-info {
   padding: clamp(1rem, 3vw, 2rem) 0;
+  flex: 1;
+  min-width: 0;
 }
 
 .project-meta {
@@ -919,6 +931,7 @@ body {
   font-size: clamp(1.2rem, 2.5vw, 1.75rem);
   letter-spacing: 0.05em;
   margin-bottom: 1.5rem;
+  word-break: break-word;
 }
 
 .project-desc {
@@ -926,6 +939,7 @@ body {
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.6);
   margin-bottom: 2rem;
+  word-break: break-word;
 }
 
 .project-stack {
@@ -1567,12 +1581,13 @@ body {
   }
 
   .project-card {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 2rem;
   }
 
   .project-visual {
     min-height: 280px;
+    width: 100%;
   }
 
   /* Hero Image Tablet */
@@ -1785,6 +1800,23 @@ body {
   }
 
   /* Projects Mobile */
+  .carousel-slide {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .project-card {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .project-visual {
+    min-height: 200px;
+    padding: 1.5rem;
+    width: 100%;
+  }
+
   .project-visual::before {
     display: none;
   }
@@ -1793,6 +1825,34 @@ body {
     font-size: 2.5rem;
     top: 0.5rem;
     left: 1rem;
+  }
+
+  .project-name {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+  }
+
+  .project-info {
+    padding: 0 0.5rem;
+    width: 100%;
+  }
+
+  .project-title {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-stack {
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-stack span {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.7rem;
   }
 
   .carousel-controls {
