@@ -33,6 +33,7 @@
     <div data-partial="./partials/projects.html"></div>
     <div data-partial="./partials/experience.html"></div>
     <div data-partial="./partials/education.html"></div>
+    <div data-partial="./partials/chat.html"></div>
     <div data-partial="./partials/contact.html"></div>
 
     <script type="module" src="./js/partials-loader.js"></script>
@@ -43,6 +44,11 @@
         const script = document.createElement("script");
         script.src = "./js/main.js";
         document.body.appendChild(script);
+
+        const chatScript = document.createElement("script");
+        chatScript.src = "./js/chat.js";
+        chatScript.onload = function () { initChat(); };
+        document.body.appendChild(chatScript);
 
         // Hide loading screen after content is ready
         setTimeout(() => {
