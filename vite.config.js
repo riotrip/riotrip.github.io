@@ -1,12 +1,15 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  root: 'docs',
+  root: "docs",
+  esbuild: {
+    jsxInject: "import React from 'react'",
+  },
   build: {
-    outDir: '../dist',
+    outDir: "../dist",
     emptyOutDir: true,
   },
   server: {
     open: true,
   },
-})
+});
