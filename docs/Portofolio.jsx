@@ -1,67 +1,228 @@
-import { useState, useEffect } from "react";
-import { COLORS } from "./constants";
-import { useActiveSection } from "./hooks/useActiveSection";
-import { Nav, MobileNav } from "./components/Navigation";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Works from "./components/Works";
-import Experience from "./components/Experience";
-import Education from "./components/Education";
-import AskAI from "./components/AskAI";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { FONTS, PIXEL_COLORS, PIXEL_BOX_STYLES } from "./theme/tokens";
+import { WORLD_CONFIG, ZONES } from "./content/zones";
+import PlayerSprite from "./components/PlayerSprite";
+import OverworldMap from "./components/OverworldMap";
+import HUD from "./components/HUD";
+import Minimap from "./components/Minimap";
+import ZoneModal from "./components/ZoneModal";
+import MainMenu from "./components/MainMenu";
 
 export default function Portfolio() {
-  const active = useActiveSection();
-  const [isMobile, setIsMobile] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
 
+  const [playerPos, setPlayerPos] = useState(WORLD_CONFIG.spawn);
+  const [playerDir, setPlayerDir] = useState("south");
+  const [isMoving, setIsMoving] = useState(false);
+  const [activeZone, setActiveZone] = useState(null);
+  const [selectedZoneModal, setSelectedZoneModal] = useState(null);
+
+  const worldRef = useRef(null);
+  const cameraRef = useRef({ x: WORLD_CONFIG.spawn.x, y: WORLD_CONFIG.spawn.y });
+  const viewportRef = useRef({ width: window.innerWidth, height: window.innerHeight });
+  const audioRef = useRef(null);
+  const [bgmOn, setBgmOn] = useState(false);
+
+  // Update viewport dimensions on resize
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    const handleResize = () => {
+      viewportRef.current = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const containerStyle = {
-    width: "100%",
-    maxWidth: "1180px",
-    margin: "0 auto",
-    padding: isMobile ? "0 16px" : "0 24px",
+  // Check proximity to all zones
+  useEffect(() => {
+    let nearest = null;
+    let minDistance = Infinity;
+
+    for (const zone of ZONES) {
+      const dx = playerPos.x - zone.x;
+      const dy = playerPos.y - zone.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < zone.radius && dist < minDistance) {
+        nearest = zone;
+        minDistance = dist;
+      }
+    }
+
+    setActiveZone(nearest);
+  }, [playerPos]);
+
+  // Handle Spacebar or Enter to interact with active zone
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.code === "Space" || e.code === "Enter") && activeZone && !selectedZoneModal) {
+        e.preventDefault();
+        setSelectedZoneModal(activeZone);
+      } else if (e.code === "Escape" && selectedZoneModal) {
+        e.preventDefault();
+        setSelectedZoneModal(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeZone, selectedZoneModal]);
+
+  // Smooth Camera Follow Loop using requestAnimationFrame
+  const updateCamera = useCallback(() => {
+    const vw = viewportRef.current.width;
+    const vh = viewportRef.current.height;
+
+    // Target camera centered on player
+    const targetX = playerPos.x - vw / 2;
+    const targetY = playerPos.y - vh / 2;
+
+    // Clamp camera within world bounds
+    const maxCamX = Math.max(0, WORLD_CONFIG.width - vw);
+    const maxCamY = Math.max(0, WORLD_CONFIG.height - vh);
+
+    const clampedTargetX = Math.max(0, Math.min(maxCamX, targetX));
+    const clampedTargetY = Math.max(0, Math.min(maxCamY, targetY));
+
+    // Smooth Lerp (12% per frame)
+    cameraRef.current.x += (clampedTargetX - cameraRef.current.x) * 0.12;
+    cameraRef.current.y += (clampedTargetY - cameraRef.current.y) * 0.12;
+
+    if (worldRef.current) {
+      worldRef.current.style.transform = `translate3d(${-Math.round(cameraRef.current.x)}px, ${-Math.round(cameraRef.current.y)}px, 0)`;
+    }
+
+    requestAnimationFrame(updateCamera);
+  }, [playerPos]);
+
+  useEffect(() => {
+    const animId = requestAnimationFrame(updateCamera);
+    return () => cancelAnimationFrame(animId);
+  }, [updateCamera]);
+
+  const handleSpriteState = (state) => {
+    setPlayerPos({ x: state.x, y: state.y });
+    setPlayerDir(state.direction);
+    setIsMoving(state.isMoving);
   };
 
+  const handleTeleport = (tx, ty) => {
+    setPlayerPos({ x: tx, y: ty + 40 });
+  };
+
+  const handleMenuStart = () => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio("/audio/bgm.mp3");
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.35;
+    }
+    audioRef.current.play().then(() => setBgmOn(true)).catch(() => {});
+    setTimeout(() => setShowMenu(false), 600);
+  };
+
+  const toggleBgm = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (bgmOn) {
+      audio.pause();
+      setBgmOn(false);
+    } else {
+      audio.play().catch(() => {});
+      setBgmOn(true);
+    }
+  };
+
+  if (showMenu) {
+    return <MainMenu onStart={handleMenuStart} />;
+  }
+
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { background: ${COLORS.bg}; color: ${COLORS.text}; -webkit-font-smoothing: antialiased; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: ${COLORS.bg}; }
-        ::-webkit-scrollbar-thumb { background: ${COLORS.border}; }
-        textarea::placeholder { color: ${COLORS.muted}; }
-        @media (max-width: 640px) {
-          .works-grid { grid-template-columns: 1fr !important; }
-          .exp-grid { grid-template-columns: 1fr !important; gap: 8px 0 !important; }
-          .edu-grid { grid-template-columns: 1fr !important; gap: 8px 0 !important; }
-        }
-      `}</style>
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        width: "100vw",
+        height: "100vh",
+        overflow: "hidden",
+        backgroundColor: "#070b14",
+        userSelect: "none",
+      }}
+    >
+      {/* Retro CRT Scanlines */}
+      <div className="scanlines-overlay" />
 
-      {isMobile ? <MobileNav active={active} /> : <Nav active={active} />}
-
-      <main
-        style={{ ...containerStyle, paddingTop: isMobile ? "52px" : "56px" }}
+      {/* BGM Toggle */}
+      <button
+        onClick={toggleBgm}
+        style={{
+          position: "fixed",
+          bottom: "16px",
+          left: "16px",
+          zIndex: 200,
+          ...PIXEL_BOX_STYLES.button,
+          fontSize: "8px",
+          padding: "6px 10px",
+          color: bgmOn ? PIXEL_COLORS.accentCyan : PIXEL_COLORS.textMuted,
+        }}
       >
-        <Hero />
-        <About />
-        <Works />
-        <Experience />
-        <Education />
-        <AskAI />
-        <Contact />
-        <Footer />
-      </main>
-    </>
+        {bgmOn ? "♪ BGM ON" : "♪ BGM OFF"}
+      </button>
+
+      {/* Fixed HUD System */}
+      <HUD
+        playerPos={playerPos}
+        direction={playerDir}
+        isMoving={isMoving}
+        activeZone={activeZone}
+        onInteract={(zone) => setSelectedZoneModal(zone)}
+      />
+
+      {/* Radar Minimap */}
+      <Minimap
+        worldWidth={WORLD_CONFIG.width}
+        worldHeight={WORLD_CONFIG.height}
+        playerPos={playerPos}
+        zones={ZONES}
+        activeZone={activeZone}
+        onTeleport={handleTeleport}
+      />
+
+      {/* World Map Container (Camera Translated) */}
+      <div
+        ref={worldRef}
+        style={{
+          position: "absolute",
+          width: `${WORLD_CONFIG.width}px`,
+          height: `${WORLD_CONFIG.height}px`,
+          backgroundColor: "#5a9349",
+          willChange: "transform",
+        }}
+      >
+        {/* World Map Graphics, Biomes & Buildings */}
+        <OverworldMap
+          zones={ZONES}
+          playerPos={playerPos}
+          activeZone={activeZone}
+          onZoneClick={(zone) => setSelectedZoneModal(zone)}
+        />
+
+        {/* Freely Movable Character Sprite in World Space */}
+        <PlayerSprite
+          containerRef={worldRef}
+          spriteSize={72}
+          onStateChange={handleSpriteState}
+        />
+      </div>
+
+      {/* Interactive Zone Modal (When triggered) */}
+      {selectedZoneModal && (
+        <ZoneModal
+          zone={selectedZoneModal}
+          onClose={() => setSelectedZoneModal(null)}
+        />
+      )}
+    </div>
   );
 }
