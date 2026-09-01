@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rio Tri Prayogo — Full-Stack Developer Portfolio</title>
+    <meta
+      name="description"
+      content="Rio Tri Prayogo — Full-Stack Developer and Applied Informatics student at Polinema, Malang. Laravel, REST API, Flutter, React, Python & computer vision. Explore his interactive pixel-art portfolio."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Rio Tri Prayogo" />
+    <meta
+      name="google-site-verification"
+      content="r9Gpz73p6bwV9Tb0nNGLBXCrJLd6HN2CY3bUKAZ4ymM"
+    />
+    <link rel="canonical" href="https://prayogo.is-a.dev/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rio Tri Prayogo Portfolio" />
+    <meta
+      property="og:title"
+      content="Rio Tri Prayogo — Full-Stack Developer Portfolio"
+    />
+    <meta
+      property="og:description"
+      content="Full-Stack Developer & Applied Informatics student (Polinema). Laravel, REST API, Flutter, React, Python, Computer Vision. Roam an interactive pixel-art overworld."
+    />
+    <meta property="og:url" content="https://prayogo.is-a.dev/" />
+    <meta
+      property="og:image"
+      content="https://prayogo.is-a.dev/img/profile.png"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Rio Tri Prayogo — Full-Stack Developer Portfolio"
+    />
+    <meta
+      name="twitter:description"
+      content="Full-Stack Developer & Applied Informatics student. Interactive pixel-art portfolio overworld."
+    />
+    <meta
+      name="twitter:image"
+      content="https://prayogo.is-a.dev/img/profile.png"
+    />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Rio Tri Prayogo",
+        "alternateName": ["Rio Prayogo", "riotrip"],
+        "jobTitle": "Full-Stack Developer",
+        "description": "Applied Informatics student at Politeknik Negeri Malang with production experience in backend services, RESTful APIs, Flutter apps, and computer vision pipelines.",
+        "url": "https://prayogo.is-a.dev/",
+        "image": "https://prayogo.is-a.dev/img/profile.png",
+        "email": "mailto:riotriprayogo31@gmail.com",
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Politeknik Negeri Malang (Polinema)"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Malang",
+          "addressCountry": "ID"
+        },
+        "knowsAbout": [
+          "Laravel",
+          "PHP",
+          "REST API",
+          "MySQL",
+          "PostgreSQL",
+          "Flutter",
+          "React",
+          "Python",
+          "Computer Vision",
+          "Docker",
+          "Linux"
+        ],
+        "sameAs": [
+          "https://github.com/riotrip",
+          "https://linkedin.com/in/rio-tri-prayogo",
+          "https://instagram.com/rio_t.p"
+        ]
+      }
+    </script>
+
+    <link rel="icon" type="image/png" href="./img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #070a12 0%, #0c101a 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 1;
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      #loading-screen.fade-out {
+        opacity: 0;
+        transform: scale(1.02);
+        pointer-events: none;
+      }
+
+      #loading-screen.removed {
+        display: none;
+      }
+
+      .loader-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        z-index: 1;
+      }
+
+      .loader-logo {
+        width: 120px;
+        height: 120px;
+        image-rendering: pixelated;
+        animation: pulse 2s ease-in-out infinite;
+        filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.5));
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.7;
+          transform: scale(0.95);
+        }
+      }
+
+      .loader-text {
+        color: #38d9a9;
+        font-family: "Press Start 2P", monospace;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 0px #000;
+        animation: fadeInOut 1.5s ease-in-out infinite;
+      }
+
+      @keyframes fadeInOut {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .loader-progress {
+        width: 240px;
+        height: 4px;
+        background: #101622;
+        border: 1px solid #25334d;
+        margin-top: 16px;
+        overflow: hidden;
+        image-rendering: pixelated;
+      }
+
+      .loader-progress-bar {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #38d9a9, #f4b41a);
+        transition: width 0.3s ease-out;
+        image-rendering: pixelated;
+      }
+
+      .loader-hint {
+        margin-top: 12px;
+        font-size: 7px;
+        color: #5e7399;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* Scanlines on loading screen */
+      #loading-screen::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%),
+          linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.015),
+            rgba(0, 255, 0, 0.01),
+            rgba(0, 0, 255, 0.015)
+          );
+        background-size:
+          100% 4px,
+          4px 100%;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      /* Grid pattern */
+      #loading-screen::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(#101622 1px, transparent 1px),
+          linear-gradient(90deg, #101622 1px, transparent 1px);
+        background-size: 32px 32px;
+        opacity: 0.2;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      #root {
+        opacity: 0;
+        transition: opacity 0.6s ease-in;
+      }
+
+      #root.ready {
+        opacity: 1;
+      }
+
+      /* SEO: visually hidden but crawlable */
+      .seo-content {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-be537c4d.js"></script>
+    <link rel="stylesheet" href="/assets/index-72a2eb9e.css">
+  </head>
+  <body>
+    <!-- Crawlable content for search engines (mirrors app content) -->
+    <div class="seo-content">
+      <h1>Rio Tri Prayogo — Full-Stack Developer</h1>
+      <p>
+        Rio Tri Prayogo is a Full-Stack Developer and Applied Informatics
+        student at Politeknik Negeri Malang (Polinema), Malang, Indonesia. GPA
+        3.90/4.00.
+      </p>
+      <p>
+        Skills: Laravel, PHP, REST API, MySQL, PostgreSQL, Flutter, React,
+        Flask, Python, Computer Vision, Linux, Docker, Nginx, Git. Projects
+        include ParisyApp and other production web, mobile, and AI builds.
+      </p>
+      <p>
+        Contact:
+        <a href="mailto:riotriprayogo31@gmail.com">riotriprayogo31@gmail.com</a>
+        · <a href="https://github.com/riotrip">GitHub — riotrip</a> ·
+        <a href="https://linkedin.com/in/rio-tri-prayogo"
+          >LinkedIn — Rio Tri Prayogo</a
+        >
+        ·
+        <a href="https://instagram.com/rio_t.p">Instagram — rio_t.p</a>
+      </p>
+    </div>
+
+    <noscript>
+      <p>
+        This interactive portfolio requires JavaScript. Rio Tri Prayogo —
+        Full-Stack Developer, Malang, Indonesia. Skills: Laravel, REST API,
+        Flutter, React, Python, Computer Vision. Contact:
+        riotriprayogo31@gmail.com · github.com/riotrip ·
+        linkedin.com/in/rio-tri-prayogo
+      </p>
+    </noscript>
+
+    <div id="loading-screen">
+      <div class="loader-content">
+        <img src="./img/logo.png" alt="Loading" class="loader-logo" />
+        <span class="loader-text">Initializing Overworld</span>
+        <div class="loader-progress">
+          <div class="loader-progress-bar" id="progress-bar"></div>
+        </div>
+        <span class="loader-hint">Press Start 2P font loading...</span>
+      </div>
+    </div>
+    <div id="root"></div>
+    
+    <script>
+      // Simulate progress while loading
+      const progressBar = document.getElementById("progress-bar");
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress > 90) progress = 90;
+        progressBar.style.width = progress + "%";
+      }, 200);
+
+      // Listen for React app ready signal
+      window.addEventListener("portfolio-ready", () => {
+        clearInterval(progressInterval);
+        progressBar.style.width = "100%";
+
+        const loadingScreen = document.getElementById("loading-screen");
+        const root = document.getElementById("root");
+
+        // Fade out loading screen
+        setTimeout(() => {
+          loadingScreen.classList.add("fade-out");
+          root.classList.add("ready");
+        }, 300);
+
+        // Remove from DOM after transition
+        setTimeout(() => {
+          loadingScreen.classList.add("removed");
+        }, 1100);
+      });
+
+      // Fallback: force remove after 5 seconds
+      setTimeout(() => {
+        clearInterval(progressInterval);
+        const loadingScreen = document.getElementById("loading-screen");
+        const root = document.getElementById("root");
+        if (!loadingScreen.classList.contains("fade-out")) {
+          progressBar.style.width = "100%";
+          loadingScreen.classList.add("fade-out");
+          root.classList.add("ready");
+          setTimeout(() => loadingScreen.classList.add("removed"), 1100);
+        }
+      }, 5000);
+    </script>
+  </body>
+</html>
