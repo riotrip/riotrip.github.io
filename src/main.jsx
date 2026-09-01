@@ -1,13 +1,19 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import Portfolio from "./Portofolio";
 
-const root = createRoot(document.getElementById("root"));
-root.render(
+const rootEl = document.getElementById("root");
+const app = (
   <StrictMode>
     <Portfolio />
-  </StrictMode>,
+  </StrictMode>
 );
+
+if (rootEl.childElementCount > 0) {
+  hydrateRoot(rootEl, app);
+} else {
+  createRoot(rootEl).render(app);
+}
 
 // Hide loading screen quickly so content is visible sooner (better LCP)
 setTimeout(() => {
