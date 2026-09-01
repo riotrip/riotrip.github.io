@@ -25,6 +25,12 @@
     <link rel="canonical" href="https://prayogo.is-a.dev/" />
     <link rel="icon" type="image/png" href="./img/logo.png" />
     <link rel="apple-touch-icon" href="./img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -40,11 +46,14 @@
     <meta property="og:url" content="https://prayogo.is-a.dev/" />
     <meta
       property="og:image"
-      content="https://prayogo.is-a.dev/img/profile.png"
+      content="https://prayogo.is-a.dev/img/og-image.png"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Rio Tri Prayogo Profile Picture" />
+    <meta
+      property="og:image:alt"
+      content="Rio Tri Prayogo — Full-Stack Developer. Laravel, REST API, Flutter, React, Python, Computer Vision."
+    />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
@@ -59,7 +68,11 @@
     />
     <meta
       name="twitter:image"
-      content="https://prayogo.is-a.dev/img/profile.png"
+      content="https://prayogo.is-a.dev/img/og-image.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Rio Tri Prayogo — Full-Stack Developer. Laravel, REST API, Flutter, React, Python, Computer Vision."
     />
 
     <!-- Structured data -->
@@ -77,10 +90,22 @@
             "url": "https://prayogo.is-a.dev/",
             "image": "https://prayogo.is-a.dev/img/profile.png",
             "email": "mailto:riotriprayogo31@gmail.com",
+            "nationality": "Indonesia",
+            "knowsLanguage": [
+              {
+                "@type": "Language",
+                "name": "Indonesian"
+              },
+              {
+                "@type": "Language",
+                "name": "English"
+              }
+            ],
             "alumniOf": {
               "@type": "CollegeOrUniversity",
               "name": "Politeknik Negeri Malang (Polinema)"
             },
+            "award": "GPA 3.90 / 4.00",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Malang",
@@ -99,11 +124,30 @@
               "Docker",
               "Linux"
             ],
+            "hasOccupation": {
+              "@type": "Occupation",
+              "name": "Full-Stack Developer",
+              "occupationalCategory": "15-1252",
+              "description": "Building web applications, REST APIs, Flutter apps, and computer vision pipelines."
+            },
+            "workExample": {
+              "@type": "CreativeWork",
+              "name": "ParisyApp",
+              "description": "Production web/mobile application built with Laravel and Flutter."
+            },
             "sameAs": [
               "https://github.com/riotrip",
               "https://linkedin.com/in/rio-tri-prayogo",
               "https://instagram.com/rio_t.p"
             ]
+          },
+          {
+            "@type": "ImageObject",
+            "@id": "https://prayogo.is-a.dev/#og-image",
+            "url": "https://prayogo.is-a.dev/img/og-image.png",
+            "width": 1200,
+            "height": 630,
+            "caption": "Rio Tri Prayogo — Full-Stack Developer Portfolio"
           },
           {
             "@type": "WebSite",
@@ -114,7 +158,15 @@
             "publisher": {
               "@id": "https://prayogo.is-a.dev/#person"
             },
-            "inLanguage": "en-US"
+            "inLanguage": "en-US",
+            "image": {
+              "@id": "https://prayogo.is-a.dev/#og-image"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://prayogo.is-a.dev/?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
           }
         ]
       }

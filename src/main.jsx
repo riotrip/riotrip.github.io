@@ -9,7 +9,7 @@ root.render(
   </StrictMode>,
 );
 
-// Hide loading screen after a longer delay so it stays visible briefly
+// Hide loading screen quickly so content is visible sooner (better LCP)
 setTimeout(() => {
   const loadingScreen = document.getElementById("loading-screen");
   if (loadingScreen) {
@@ -18,4 +18,4 @@ setTimeout(() => {
       loadingScreen.remove();
     }, 600);
   }
-}, 1400);
+}, 600);
