@@ -1,6 +1,5 @@
-# My Portfolio
+# Rio Tri Prayogo
 
-Welcome to my portfolio! I enjoy the process of turning complex ideas into simple, elegant code. I'm always eager to learn new technologies and collaborate on challenging projects. Explore my work below and let's connect!
+Selected web, mobile, and machine-learning work by Rio Tri Prayogo.
 
-🔗 **Live**: [prayogo.is-a.dev](https://prayogo.is-a.dev/)
-🐙 **GitHub**: [github.com/riotrip](https://github.com/riotrip)
+[Portfolio](https://prayogo.is-a.dev/) · [GitHub](https://github.com/riotrip)

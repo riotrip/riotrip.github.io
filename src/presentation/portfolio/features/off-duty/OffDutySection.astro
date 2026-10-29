@@ -1,0 +1,25 @@
+<section class="taste" id="taste" aria-labelledby="taste-title">
+  <header class="ws-bar ws-bar--dark"><span>~/off-duty</span><span>AFTER HOURS</span></header>
+  <div class="offduty">
+    <h2 id="taste-title" data-mask>Off duty<span class="offduty__period">.</span></h2>
+    <div class="ask">
+      <div class="lounge-chat" id="lounge-chat" aria-label="Chat with Rui, Rio's AI assistant">
+        <div class="lounge-chat__messages" id="chat-messages" role="log" aria-live="polite">
+          <p class="tty__line" style="--n:0">RUI <i>· Rio's AI assistant</i></p>
+          <p class="tty__line" style="--n:1"><b>[ ok ]</b> loaded profile</p>
+          <p class="tty__line" style="--n:2"><b>[ ok ]</b> loaded projects</p>
+          <p class="tty__line tty__line--ready" style="--n:3">ready. ask a question.</p>
+        </div>
+        <div class="lounge-chat__chips" id="chat-chips">
+          <button type="button">What can you help with?</button>
+          <button type="button">Tell me about Rio.</button>
+          <button type="button">What are you working on?</button>
+        </div>
+        <form class="lounge-chat__input" id="chat-form" autocomplete="off">
+          <input type="text" id="chat-input" aria-label="Type a message" required>
+          <button type="submit" aria-label="Send">→</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

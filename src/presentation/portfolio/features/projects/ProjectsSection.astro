@@ -1,0 +1,56 @@
+---
+import { featuredProjects } from '../../../../domain/projects/project-catalog';
+---
+<!-- Projects: the list is one sentence; project names are the links. -->
+      <section class="work" id="work" aria-labelledby="work-title">
+        <header class="ws-bar"><span>~/projects</span><span>WORK INDEX</span></header>
+        <div class="work__head">
+          <h2 id="work-title">Projects</h2>
+          <p>Featured work and archive.</p>
+        </div>
+        <p class="work-lede" id="work-lede">
+          Each project has taken me into a new kind of problem, from machine learning to web platforms.
+          {featuredProjects.map((project, index) => (
+            <>
+              <button type="button" class:list={['pj', { 'is-active': index === 0 }]} data-pj={index} aria-controls={`pj-detail-${index}`} aria-expanded={index === 0 ? 'true' : 'false'}>{project.name}</button><span>, {project.tag}{index < featuredProjects.length - 2 ? ';' : index === featuredProjects.length - 2 ? '; and' : '.'}</span>{' '}
+            </>
+          ))}
+        </p>
+        <div class="work-detail" id="work-detail" aria-live="polite">
+          {featuredProjects.map((project, index) => (
+            <article class:list={['work-detail__item', { 'is-active': index === 0 }]} id={`pj-detail-${index}`} data-pj-detail={index}>
+              <p class="work-detail__meta">{project.meta}</p>
+              <p class="work-detail__stack">{project.stack}</p>
+              <p class="work-detail__text">{project.description}</p>
+              {'link' in project && project.link && (
+                <a class="work-detail__link" href={project.link.href} target="_blank" rel="noopener noreferrer">
+                  {project.link.label} <span aria-hidden="true">↗</span>
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+        <div class="work__archive"><span>MORE PROJECTS</span><a href="https://github.com/naufal11705/PBL-SARPRAS" title="SiPRAK · Back-End Developer · Laravel and MySQL" target="_blank" rel="noopener noreferrer">SiPRAK · Mar–Jun 2025 ↗</a><a href="https://github.com/riotrip/aduan-masyarakat-beta/" title="CareReport · Full-Stack Developer · Laravel and MySQL" target="_blank" rel="noopener noreferrer">CareReport · Aug 2022–Jan 2023 ↗</a><a href="https://qraffiti.vercel.app/" title="QRAFFITI · Full-Stack Developer · Flask" target="_blank" rel="noopener noreferrer">QRAFFITI · 2025 ↗</a><a href="https://github.com/riotrip/kas-online-java" title="Online Cash Management · Project Manager · Java" target="_blank" rel="noopener noreferrer">Online Cash Management · Aug–Dec 2023 ↗</a><a href="https://github.com/Kiaakk/PBL-PRESMA" title="SiPresma · Front-End Developer · PHP and Bootstrap" target="_blank" rel="noopener noreferrer">SiPresma · Aug–Dec 2024 ↗</a><a href="https://github.com/clockingoffbye/news-website" title="Newsphere · Back-End Developer · PHP and MongoDB" target="_blank" rel="noopener noreferrer">Newsphere · Aug–Dec 2024 ↗</a><span class="work__archive-item" title="WordPress landing page for Birubulu Religious Affairs Office · Indoweb.Id">Birubulu Religious Affairs Office · Apr–May 2022</span></div>
+      </section>
+
+<script>
+  // Hover, focus or tap a name in the sentence: its details replace the previous ones.
+  const names = Array.from(document.querySelectorAll<HTMLButtonElement>('.pj'));
+  const items = Array.from(document.querySelectorAll<HTMLElement>('.work-detail__item'));
+
+  function show(index: number): void {
+    names.forEach((button, i) => {
+      button.classList.toggle('is-active', i === index);
+      button.setAttribute('aria-expanded', String(i === index));
+    });
+    items.forEach((item, i) => item.classList.toggle('is-active', i === index));
+  }
+
+  names.forEach((button) => {
+    const index = Number(button.dataset.pj);
+    button.addEventListener('click', () => show(index));
+    button.addEventListener('focus', () => show(index));
+    // Mouse only; on touch the click above does the job.
+    button.addEventListener('pointerenter', (event) => { if (event.pointerType === 'mouse') show(index); });
+  });
+</script>

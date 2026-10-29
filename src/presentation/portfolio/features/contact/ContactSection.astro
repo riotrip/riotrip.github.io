@@ -1,0 +1,19 @@
+---
+import { siteProfile } from '../../../../domain/portfolio/site-profile';
+---
+<!-- Contact -->
+  <section class="contact section" id="contact" aria-labelledby="contact-title">
+    <header class="contact__top">
+      <nav class="contact__nav" aria-label="Section navigation"><a href="#work">Projects</a><a href="#info">About</a><a href="#contact" aria-current="page">Contact</a></nav>
+      <span class="contact__location">FULL-STACK DEVELOPER</span>
+    </header>
+    <div class="contact__main">
+      <h2 id="contact-title"><span>Get in</span><span class="contact__title-line">Touch</span></h2>
+      <a class="contact__email" href={`mailto:${siteProfile.email}`}>{siteProfile.email}</a>
+    </div>
+    <aside class="contact__aside" aria-label="Contact details">
+      <p class="contact__quote">Tell me what you’re working on.</p>
+      <div class="contact__socials"><h3>Find me elsewhere</h3><a href={siteProfile.socials.github} target="_blank" rel="noopener">GitHub</a><a href={siteProfile.socials.linkedin} target="_blank" rel="noopener">LinkedIn</a><a href={siteProfile.socials.instagram} target="_blank" rel="noopener">Instagram</a></div>
+    </aside>
+    <footer class="footer"><span>© 2026 · {siteProfile.name}</span><a href="#home">Back to top ↑</a></footer>
+  </section>

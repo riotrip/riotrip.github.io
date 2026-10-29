@@ -8,10 +8,20 @@ pnpm-debug.log*
 # Build outputs
 dist/
 build/
+docs/
 
-# Vite
-.vite/
+# Generated tooling files
+.astro/
+.playwright-mcp/
 *.local
+
+# Local-only context and tooling
+AGENTS.md
+.agents/
+.agent/
+.impeccable/
+PRODUCT*.md
+tests/
 
 # Environment variables
 .env

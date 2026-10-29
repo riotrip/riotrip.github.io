@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../presentation/layouts/BaseLayout.astro';
+import SiteChrome from '../presentation/portfolio/features/chrome/SiteChrome.astro';
+import HeroSection from '../presentation/portfolio/features/home/HeroSection.astro';
+import ProjectsSection from '../presentation/portfolio/features/projects/ProjectsSection.astro';
+import AboutSection from '../presentation/portfolio/features/about/AboutSection.astro';
+import ExperienceSection from '../presentation/portfolio/features/experience/ExperienceSection.astro';
+import OffDutySection from '../presentation/portfolio/features/off-duty/OffDutySection.astro';
+import ContactSection from '../presentation/portfolio/features/contact/ContactSection.astro';
+import { siteProfile } from '../domain/portfolio/site-profile';
+---
+<BaseLayout
+  title={siteProfile.title}
+  description={siteProfile.description}
+>
+  <SiteChrome />
+  <main id="main">
+    <div class="swipe" id="swipe">
+      <div class="swipe__stage">
+        <HeroSection />
+        <ProjectsSection />
+      </div>
+    </div>
+    <AboutSection />
+    <ExperienceSection />
+    <OffDutySection />
+    <ContactSection />
+  </main>
+  <script>
+    import { mountPortfolio } from '../presentation/portfolio/portfolio-runtime';
+    void mountPortfolio();
+  </script>
+</BaseLayout>
