@@ -1,0 +1,103 @@
+---
+import '../styles/global.css';
+import 'lenis/dist/lenis.css';
+import { siteProfile } from '../../domain/portfolio/site-profile';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
+  breadcrumbs?: { name: string; path: string }[];
+}
+
+const {
+  title,
+  description,
+  image = '/img/og-image.png',
+  imageAlt = `${siteProfile.name} — full-stack developer portfolio`,
+  noindex = false,
+  breadcrumbs = [{ name: 'Home', path: '/' }],
+} = Astro.props;
+const site = Astro.site ?? new URL('https://prayogo.is-a.dev');
+const canonical = new URL(Astro.url.pathname, site).href;
+const imageUrl = new URL(image, site).href;
+const personId = new URL('/#person', site).href;
+const graph = [
+  {
+    '@type': 'Person', '@id': personId, name: siteProfile.name,
+    jobTitle: siteProfile.role, url: new URL('/', site).href,
+    email: `mailto:${siteProfile.email}`,
+    affiliation: { '@type': 'CollegeOrUniversity', name: siteProfile.school },
+    sameAs: Object.values(siteProfile.socials),
+  },
+  {
+    '@type': 'Organization', '@id': new URL('/#organization', site).href,
+    name: siteProfile.name, url: new URL('/', site).href,
+    logo: new URL('/img/logo.png', site).href,
+    founder: { '@id': personId },
+  },
+  {
+    '@type': 'WebSite', '@id': new URL('/#website', site).href,
+    name: `${siteProfile.name} Portfolio`, url: new URL('/', site).href,
+    inLanguage: 'en', publisher: { '@id': personId },
+  },
+  {
+    '@type': 'WebPage', '@id': `${canonical}#webpage`,
+    name: title, description, url: canonical, inLanguage: 'en',
+    isPartOf: { '@id': new URL('/#website', site).href },
+  },
+  {
+    '@type': 'Service', '@id': new URL('/#software-development', site).href,
+    name: 'Web and mobile application development',
+    serviceType: 'Web and mobile application development',
+    provider: { '@id': personId },
+    description: 'Interfaces, APIs, and data systems for web and mobile applications.',
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map(({ name, path }, index) => ({
+      '@type': 'ListItem', position: index + 1, name, item: new URL(path, site).href,
+    })),
+  },
+];
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#26323b" />
+    <meta name="author" content={siteProfile.name} />
+    <meta name="google-site-verification" content="r9Gpz73p6bwV9Tb0nNGLBXCrJLd6HN2CY3bUKAZ4ymM" />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/x-icon" href="/img/logo.ico" />
+    <link rel="icon" type="image/png" href="/img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={`${siteProfile.name} Portfolio`} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <script type="application/ld+json" set:html={jsonLd} />
+    <script is:inline>document.documentElement.classList.add('js'); window.setTimeout(() => document.getElementById('boot')?.remove(), 6000);</script>
+  </head>
+  <body><slot /></body>
+</html>

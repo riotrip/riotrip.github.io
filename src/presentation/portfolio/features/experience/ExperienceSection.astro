@@ -1,0 +1,87 @@
+---
+import { experienceGroups } from '../../../../domain/experience/experience-catalog';
+---
+<!-- Experience -->
+  <section class="experience section" id="experience" aria-labelledby="experience-title">
+    <header class="ws-bar"><span>~/experience</span><span>WORK · CAMPUS</span></header>
+    <div class="experience__head"><h2 id="experience-title" data-mask>Experience<br>so far.</h2></div>
+    <div class="experience-browser">
+      <div class="experience-picker">
+        {experienceGroups.map((group) => (
+          <div class="experience-picker__group"><h3>{group.label}</h3>
+            {group.entries.map((entry) => (
+              <button class="experience-pick" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="experience-modal" data-experience-pick={`experience-${entry.id}`}><strong>{entry.title}</strong><small>{entry.subtitle}</small></button>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+    <dialog class="experience-modal" id="experience-modal" aria-label="Experience details">
+      <form method="dialog" class="experience-modal__close-wrap"><button class="experience-modal__close" aria-label="Close details">×</button></form>
+      <div class="experience-detail" aria-live="polite">
+        <article class="experience-detail__panel" id="experience-kss" role="region" aria-labelledby="experience-title-kss">
+          <figure class="experience-detail__image">
+            <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of a responsive website interface">
+              <rect width="640" height="400" fill="#26323b"/>
+              <rect x="90" y="60" width="362" height="250" fill="#e2e8ec"/><rect x="90" y="60" width="362" height="32" fill="#b9c8d1"/>
+              <circle cx="110" cy="76" r="4" fill="#496b85"/><circle cx="126" cy="76" r="4" fill="#91a6b3"/>
+              <rect x="120" y="120" width="302" height="72" fill="#c8d5dc"/><path d="M140 142h160m-160 21h108M120 224h122m-122 22h198m-198 22h158" stroke="#496b85" stroke-width="5"/>
+              <rect x="414" y="146" width="118" height="206" rx="9" fill="#91a6b3"/><rect x="423" y="163" width="100" height="165" fill="#edf1f3"/><path d="M437 190h72m-72 20h53m-53 37h72m-72 19h54" stroke="#496b85" stroke-width="4"/>
+            </svg>
+            <figcaption>ILLUSTRATION</figcaption>
+          </figure>
+          <div class="experience-detail__copy"><p class="experience-detail__type">INTERNSHIP / JULY 2026–PRESENT</p><h3 id="experience-title-kss">Frontend Developer</h3><p class="experience-detail__place">PT. Kita Semua Satu</p></div>
+        </article>
+        <article class="experience-detail__panel" id="experience-multi" role="region" aria-labelledby="experience-title-multi" hidden>
+          <figure class="experience-detail__image experience-detail__image--photo">
+            <img src="/img/experience-spunindo.webp" alt="Interns and staff outside PT Multi Spunindo Jaya Tbk." loading="lazy" width="960" height="1280">
+            <figcaption>INTERNSHIP TEAM</figcaption>
+          </figure>
+          <div class="experience-detail__copy"><p class="experience-detail__type">INTERNSHIP / JANUARY–JULY 2026</p><h3 id="experience-title-multi">Full-Stack Web Developer</h3><p class="experience-detail__place">PT Multi Spunindo Jaya Tbk.</p><p class="experience-detail__summary">Worked with the development team on database performance, back-end logic, and responsive front-end pages.</p></div>
+        </article>
+        <article class="experience-detail__panel" id="experience-indoweb" role="region" aria-labelledby="experience-title-indoweb" hidden>
+          <figure class="experience-detail__image experience-detail__image--photo">
+            <img src="/img/experience-indoweb.webp" alt="Interns and staff outside Indoweb's office." loading="lazy" width="1280" height="960">
+            <figcaption>INDOWEB TEAM</figcaption>
+          </figure>
+          <div class="experience-detail__copy"><p class="experience-detail__type">INTERNSHIP / JANUARY–JULY 2022</p><h3 id="experience-title-indoweb">Digital Marketing &amp; WordPress Developer</h3><p class="experience-detail__place">Indoweb.Id</p><p class="experience-detail__summary">Built and customized responsive WordPress sites, improved performance, created campaign content, and helped manage social media.</p></div>
+        </article>
+        <article class="experience-detail__panel" id="experience-bem" role="region" aria-labelledby="experience-title-bem" hidden>
+          <figure class="experience-detail__image experience-detail__image--photo">
+            <img src="/img/experience-bem.webp" alt="Student Executive Board members at a campus gathering." loading="lazy" width="1400" height="1050">
+            <figcaption>STUDENT EXECUTIVE BOARD</figcaption>
+          </figure>
+          <div class="experience-detail__copy"><p class="experience-detail__type">ORGANIZATION / STATE POLYTECHNIC OF MALANG</p><h3 id="experience-title-bem">Student Executive Board</h3><ul><li><strong>Student Advocacy and Welfare Staff</strong> — Advocated for student rights and supported communication between students and campus administration.</li><li><strong>Vice Minister of Student Advocacy and Welfare · Financial Division</strong> — Coordinated scholarships, tuition fees (UKT), and insurance matters as a communication bridge between students and campus administration.</li></ul></div>
+        </article>
+        <article class="experience-detail__panel" id="experience-camfair" role="region" aria-labelledby="experience-title-camfair" hidden>
+          <figure class="experience-detail__image experience-detail__image--photo">
+            <img src="/img/experience-camfair.webp" alt="Organizers at Campus Fair Esemkita 2024." loading="lazy" width="1400" height="788">
+            <figcaption>CAMPUS FAIR TEAM</figcaption>
+          </figure>
+          <div class="experience-detail__copy"><p class="experience-detail__type">VOLUNTEERING / DECEMBER 2023–JANUARY 2024</p><h3 id="experience-title-camfair">Public Relations · Campus Fair Esemkita</h3><p class="experience-detail__place">State Vocational High School 1 Boyolangu</p><p class="experience-detail__summary">Helped introduce students to higher education options and coordinated sponsor outreach for the fair.</p></div>
+        </article>
+        <article class="experience-detail__panel" id="experience-prastudi" role="region" aria-labelledby="experience-title-prastudi" hidden>
+          <figure class="experience-detail__image experience-detail__image--photo">
+            <img src="/img/experience-prastudi.webp" alt="Student orientation organizers gathered on campus." loading="lazy" width="1400" height="1050">
+            <figcaption>PRE-STUDY ORIENTATION</figcaption>
+          </figure>
+          <div class="experience-detail__copy"><p class="experience-detail__type">VOLUNTEERING / AUGUST 2024</p><h3 id="experience-title-prastudi">Liaison Officer · Pre-Study Orientation</h3><p class="experience-detail__place">State Polytechnic of Malang</p><p class="experience-detail__summary">Coordinated speakers for the new-student orientation and served as their point of contact with the event committee.</p></div>
+        </article>
+        <article class="experience-detail__panel" id="experience-expo" role="region" aria-labelledby="experience-title-expo" hidden>
+          <figure class="experience-detail__image experience-detail__image--photo">
+            <img src="/img/experience-expo.webp" alt="Organizers at the Student Organizations Expo." loading="lazy" width="1400" height="1050">
+            <figcaption>STUDENT ORGANIZATIONS EXPO</figcaption>
+          </figure>
+          <div class="experience-detail__copy"><p class="experience-detail__type">VOLUNTEERING / JUNE–SEPTEMBER 2024</p><h3 id="experience-title-expo">Public Relations · Student Organizations Expo</h3><p class="experience-detail__place">State Polytechnic of Malang</p><p class="experience-detail__summary">Introduced student activity units to incoming students, coordinated approvals with campus administration, and contacted sponsors.</p></div>
+        </article>
+        <article class="experience-detail__panel" id="experience-dipam" role="region" aria-labelledby="experience-title-dipam" hidden>
+          <figure class="experience-detail__image experience-detail__image--photo">
+            <img src="/img/experience-dipam.webp" alt="Organizers at the 2024 Student–Directorate Forum." loading="lazy" width="788" height="1400">
+            <figcaption>STUDENT–DIRECTORATE FORUM</figcaption>
+          </figure>
+          <div class="experience-detail__copy"><p class="experience-detail__type">VOLUNTEERING / SEPTEMBER–DECEMBER 2024</p><h3 id="experience-title-dipam">Secretariat Division Coordinator</h3><p class="experience-detail__place">Student–Directorate Forum · State Polytechnic of Malang</p><p class="experience-detail__summary">Students brought concerns and suggestions to the director and campus officials at this forum. I coordinated its letters, invitations, and event documents.</p></div>
+        </article>
+      </div>
+    </dialog>
+  </section>
+
