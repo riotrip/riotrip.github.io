@@ -1,25 +1,20 @@
 <section class="taste" id="taste" aria-labelledby="taste-title">
-  <header class="ws-bar ws-bar--dark"><span>~/off-duty</span><span>AFTER HOURS</span></header>
-  <div class="offduty">
-    <h2 id="taste-title" data-mask>Off duty<span class="offduty__period">.</span></h2>
-    <div class="ask">
-      <div class="lounge-chat" id="lounge-chat" aria-label="Chat with Rui, Rio's AI assistant">
-        <div class="lounge-chat__messages" id="chat-messages" role="log" aria-live="polite">
-          <p class="tty__line" style="--n:0">RUI <i>· Rio's AI assistant</i></p>
-          <p class="tty__line" style="--n:1"><b>[ ok ]</b> loaded profile</p>
-          <p class="tty__line" style="--n:2"><b>[ ok ]</b> loaded projects</p>
-          <p class="tty__line tty__line--ready" style="--n:3">ready. ask a question.</p>
-        </div>
-        <div class="lounge-chat__chips" id="chat-chips">
-          <button type="button">What can you help with?</button>
-          <button type="button">Tell me about Rio.</button>
-          <button type="button">What are you working on?</button>
-        </div>
-        <form class="lounge-chat__input" id="chat-form" autocomplete="off">
-          <input type="text" id="chat-input" aria-label="Type a message" required>
-          <button type="submit" aria-label="Send">→</button>
-        </form>
-      </div>
+  <header class="ws-bar"><span>~/off-duty</span><span>AFTER HOURS</span></header>
+  <div class="taste__content">
+    <h2 id="taste-title">Off duty<span class="taste__period">.</span></h2>
+    <div class="taste__page">
+      <p class="taste__note">I like music and manga, and keep my playlists on Spotify. Tbh, I don’t know what to put here, so here it is. I do whatever my boss asks, but what happens at work stays at work.</p>
+      <blockquote class="taste__quote" cite="https://github.com/riotrip">
+        <p>“Well then, your desire to be able to read the source code, I’d suggest you to give up!”</p>
+        <cite class="taste__source">From the manga: Fired? But I Maintain All the Software!</cite>
+      </blockquote>
+      <aside class="taste__spotify" aria-label="Spotify profile">
+        <p class="taste__category">Music · Spotify</p>
+        <h3 class="taste__spotify-name">yothethird</h3>
+        <a class="taste__spotify-link" href="https://open.spotify.com/user/31dtsrzcjjrrv52v7o62ca7t7k4a" target="_blank" rel="noopener noreferrer">
+          Browse playlists <span aria-hidden="true">↗</span>
+        </a>
+      </aside>
     </div>
   </div>
 </section>

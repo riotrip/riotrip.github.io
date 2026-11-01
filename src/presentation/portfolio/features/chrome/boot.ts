@@ -21,8 +21,8 @@ export async function runBoot(): Promise<void> {
       window.clearTimeout(timer);
       window.removeEventListener('keydown', onKey);
 
-      animate(overlay, { opacity: [1, 0], duration: 1600, ease: 'inOutSine', onComplete: () => overlay.remove() });
-      window.setTimeout(resolve, 520);
+      animate(overlay, { opacity: [1, 0], duration: 500, ease: 'inOutSine', onComplete: () => overlay.remove() });
+      window.setTimeout(resolve, 180);
     };
 
     const onKey = (event: KeyboardEvent) => {
@@ -31,6 +31,6 @@ export async function runBoot(): Promise<void> {
 
     $('#boot-skip')?.addEventListener('click', finish, { once: true });
     window.addEventListener('keydown', onKey);
-    timer = window.setTimeout(finish, 2800);
+    timer = window.setTimeout(finish, 850);
   });
 }

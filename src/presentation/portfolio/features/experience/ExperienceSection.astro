@@ -3,7 +3,7 @@ import { experienceGroups } from '../../../../domain/experience/experience-catal
 ---
 <!-- Experience -->
   <section class="experience section" id="experience" aria-labelledby="experience-title">
-    <header class="ws-bar"><span>~/experience</span><span>WORK · CAMPUS</span></header>
+    <header class="ws-bar"><span>~/experience</span><span>ON RECORD</span></header>
     <div class="experience__head"><h2 id="experience-title" data-mask>Experience<br>so far.</h2></div>
     <div class="experience-browser">
       <div class="experience-picker">
@@ -16,7 +16,7 @@ import { experienceGroups } from '../../../../domain/experience/experience-catal
         ))}
       </div>
     </div>
-    <dialog class="experience-modal" id="experience-modal" aria-label="Experience details">
+    <dialog class="experience-modal" id="experience-modal" aria-label="Experience details" data-lenis-prevent>
       <form method="dialog" class="experience-modal__close-wrap"><button class="experience-modal__close" aria-label="Close details">×</button></form>
       <div class="experience-detail" aria-live="polite">
         <article class="experience-detail__panel" id="experience-kss" role="region" aria-labelledby="experience-title-kss">
