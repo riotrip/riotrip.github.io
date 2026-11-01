@@ -20,12 +20,13 @@ export function initSectionScrollEffects(): void {
     if (work) {
       const p = document.documentElement.classList.contains('is-swipe')
         ? clamp(window.scrollY / vh, 0, 1)
-        : clamp((vh - work.getBoundingClientRect().top) / (vh * 0.9), 0, 1);
+        : clamp((vh - work.getBoundingClientRect().top) / (Math.min(vh, work.offsetHeight) * 0.9), 0, 1);
       work.style.setProperty('--work-progress', String(ease(p)));
     }
 
     for (const el of targets) {
-      const p = clamp((vh - el.getBoundingClientRect().top) / (vh * 0.85), 0, 1);
+      // Compact sections must finish revealing before they run out of scroll space.
+      const p = clamp((vh - el.getBoundingClientRect().top) / (Math.min(vh, el.offsetHeight) * 0.85), 0, 1);
       const e = ease(p);
       if (el.id === 'info') el.style.setProperty('--info-progress', String(p));
       if (el.id === 'experience') {
@@ -60,9 +61,6 @@ export function initSectionScrollEffects(): void {
           el.style.transform = '';
           el.style.borderRadius = '';
         }
-      }
-      if (el.id === 'taste') {
-        el.style.setProperty('--taste-progress', String(e));
       }
     }
   }
