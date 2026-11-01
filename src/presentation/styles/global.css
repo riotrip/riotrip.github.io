@@ -95,13 +95,13 @@ button { font: inherit; cursor: pointer; }
 .boot__log {
   color: var(--night-muted);
   opacity: 0;
-  animation: boot-line 0.2s calc(0.2s + var(--n) * 0.24s) steps(1, end) forwards;
+  animation: boot-line 0.12s calc(0.08s + var(--n) * 0.12s) steps(1, end) forwards;
 }
 .boot__terminal .boot__ready {
   margin-top: 14px;
   color: var(--paper);
   opacity: 0;
-  animation: boot-line 0.2s 1.2s steps(1, end) forwards;
+  animation: boot-line 0.12s 0.58s steps(1, end) forwards;
 }
 .boot__ready span { color: var(--night-subtle); animation: blink 0.8s steps(1, end) infinite; }
 
