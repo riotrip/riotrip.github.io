@@ -489,10 +489,10 @@ button { font: inherit; cursor: pointer; }
 
 .info__bio { max-width: 410px; }
 .info__bio p { margin: 0 0 18px; color: var(--muted); font-size: 14px; line-height: 1.7; }
-.info__bio > a {
 .info__exploring { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); }
 .info__exploring h3 { margin: 0 0 10px; color: var(--muted); font: 10px/1.5 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
 .info__exploring p { margin: 0; color: var(--ink); font-size: 13px; line-height: 1.65; }
+.info__bio > a {
   display: inline-block;
   margin-top: 13px;
   padding-bottom: 5px;
@@ -709,6 +709,8 @@ button { font: inherit; cursor: pointer; }
   .hero__aside { grid-template-columns: 1fr; gap: 16px; }
 
   .section { padding-top: 70px; padding-bottom: 78px; }
+  .info > .ws-bar,
+  .experience > .ws-bar { margin-top: -44px; }
   .section h2 { font-size: clamp(38px, 10vw, 62px); }
   .section-head h2 { font-size: clamp(38px, 10vw, 62px); }
 
@@ -716,8 +718,7 @@ button { font: inherit; cursor: pointer; }
   .info__portrait { max-width: 210px; }
   .info__bio { max-width: 550px; }
   .info__details { grid-column: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 20px; }
-  .info > .ws-bar,
-  .experience > .ws-bar { margin-top: -44px; }
+  .info__school { grid-column: 1 / -1; padding-top: 19px; border-top: 1px solid var(--line); }
   .experience__head { padding: 32px 0; }
   .experience__head h2 { font-size: clamp(48px, 12vw, 72px); }
   .experience-picker { row-gap: 24px; }
@@ -725,7 +726,6 @@ button { font: inherit; cursor: pointer; }
   .experience-detail__image { min-height: 220px; }
   .experience-detail__image svg { min-height: 220px; }
   .experience-detail__image img { min-height: 220px; }
-  .info__school { grid-column: 1 / -1; padding-top: 19px; border-top: 1px solid var(--line); }
   .experience-detail__image--photo { height: clamp(144px, 24svh, 180px); min-height: 0; }
   .experience-detail__image--photo img { min-height: 0; }
   .experience-detail__copy { min-height: 130px; padding: 20px 0 0; }
