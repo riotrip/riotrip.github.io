@@ -1,13 +1,16 @@
+---
+import { siteProfile } from '../../../../domain/portfolio/site-profile';
+---
 <!-- Home -->
       <section class="hero" id="home" aria-labelledby="hero-title">
         <div class="hero__copy">
           <p class="hero__prompt" data-hero><span>rio@portfolio:~$</span> whoami</p>
           <h1 id="hero-title" data-hero>Rio Tri<br><em>Prayogo.</em></h1>
           <p class="hero__tagline" data-hero>I build web and mobile apps.</p>
-          <p class="hero__intro" data-hero>I’m pursuing an Applied Bachelor's in Informatics Engineering at State Polytechnic of Malang. I build interfaces, APIs, and data systems—from a health PWA and recruitment portal to a machine-learning vegetable classifier.</p>
+          <p class="hero__intro" data-hero>I’m pursuing an Applied Bachelor's in Informatics Engineering at State Polytechnic of Malang. I build interfaces, APIs, and data systems for a range of digital products.</p>
           <div class="hero__actions" data-hero>
             <a class="hero__link" href="#work">Explore the work <span>→</span></a>
-            <a class="hero__link hero__link--quiet" href="https://github.com/riotrip" target="_blank" rel="noopener">GitHub <span>↗</span></a>
+            <a class="hero__link hero__link--quiet" href={siteProfile.socials.linkedin} target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
           </div>
         </div>
         <dl class="hero__aside" data-hero>

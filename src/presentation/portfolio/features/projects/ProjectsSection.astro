@@ -1,15 +1,17 @@
 ---
-import { featuredProjects } from '../../../../domain/projects/project-catalog';
----
+ import { featuredProjects } from '../../../../domain/projects/project-catalog';
+ import { siteProfile } from '../../../../domain/portfolio/site-profile';
+ ---
 <!-- Projects: the list is one sentence; project names are the links. -->
       <section class="work" id="work" aria-labelledby="work-title">
-        <header class="ws-bar"><span>~/projects</span><span>WORK INDEX</span></header>
+        <header class="ws-bar"><span>~/projects</span><span>A FEW BUILDS</span></header>
         <div class="work__head">
-          <h2 id="work-title">Projects</h2>
+          <h2 id="work-title">Things I’ve built.</h2>
           <p>Featured work and archive.</p>
         </div>
         <p class="work-lede" id="work-lede">
           Each project has taken me into a new kind of problem, from machine learning to web platforms.
+          {' '}
           {featuredProjects.map((project, index) => (
             <>
               <button type="button" class:list={['pj', { 'is-active': index === 0 }]} data-pj={index} aria-controls={`pj-detail-${index}`} aria-expanded={index === 0 ? 'true' : 'false'}>{project.name}</button><span>, {project.tag}{index < featuredProjects.length - 2 ? ';' : index === featuredProjects.length - 2 ? '; and' : '.'}</span>{' '}
@@ -30,7 +32,7 @@ import { featuredProjects } from '../../../../domain/projects/project-catalog';
             </article>
           ))}
         </div>
-        <div class="work__archive"><span>MORE PROJECTS</span><a href="https://github.com/naufal11705/PBL-SARPRAS" title="SiPRAK · Back-End Developer · Laravel and MySQL" target="_blank" rel="noopener noreferrer">SiPRAK · Mar–Jun 2025 ↗</a><a href="https://github.com/riotrip/aduan-masyarakat-beta/" title="CareReport · Full-Stack Developer · Laravel and MySQL" target="_blank" rel="noopener noreferrer">CareReport · Aug 2022–Jan 2023 ↗</a><a href="https://qraffiti.vercel.app/" title="QRAFFITI · Full-Stack Developer · Flask" target="_blank" rel="noopener noreferrer">QRAFFITI · 2025 ↗</a><a href="https://github.com/riotrip/kas-online-java" title="Online Cash Management · Project Manager · Java" target="_blank" rel="noopener noreferrer">Online Cash Management · Aug–Dec 2023 ↗</a><a href="https://github.com/Kiaakk/PBL-PRESMA" title="SiPresma · Front-End Developer · PHP and Bootstrap" target="_blank" rel="noopener noreferrer">SiPresma · Aug–Dec 2024 ↗</a><a href="https://github.com/clockingoffbye/news-website" title="Newsphere · Back-End Developer · PHP and MongoDB" target="_blank" rel="noopener noreferrer">Newsphere · Aug–Dec 2024 ↗</a><span class="work__archive-item" title="WordPress landing page for Birubulu Religious Affairs Office · Indoweb.Id">Birubulu Religious Affairs Office · Apr–May 2022</span></div>
+         <div class="work__archive"><span>MORE PROJECTS</span><a href={siteProfile.socials.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
       </section>
 
 <script>
