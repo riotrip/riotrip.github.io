@@ -1,58 +1,214 @@
 ---
- import { featuredProjects } from '../../../../domain/projects/project-catalog';
- import { siteProfile } from '../../../../domain/portfolio/site-profile';
- ---
-<!-- Projects: the list is one sentence; project names are the links. -->
-      <section class="work" id="work" aria-labelledby="work-title">
-        <header class="ws-bar"><span>~/projects</span><span>A FEW BUILDS</span></header>
-        <div class="work__head">
-          <h2 id="work-title">Things I’ve built.</h2>
-          <p>Featured work and archive.</p>
+import { featuredProjects } from '../../../../domain/projects/project-catalog';
+import { siteProfile } from '../../../../domain/portfolio/site-profile';
+
+const projects = featuredProjects;
+const total = String(projects.length).padStart(2, '0');
+---
+
+<section class="work work--index" id="work" aria-labelledby="work-title" data-projects>
+  <header class="ws-bar">
+    <span>~/projects</span>
+    <span>SELECTED WORK — {total}</span>
+  </header>
+
+  <div class="work__head work-index__head">
+    <h2 id="work-title">Things I’ve built<span>.</span></h2>
+    <p>Web, mobile, and machine-learning projects.</p>
+  </div>
+
+  <div class="project-directory" data-project-directory>
+    <div class="project-directory__list" role="list" aria-label="Project index">
+      {projects.map((project, index) => (
+        <button
+          class="project-row"
+          type="button"
+          role="listitem"
+          data-project-row={index}
+          aria-controls="project-detail"
+          aria-expanded="false"
+        >
+          <span class="project-row__year">{project.year}</span>
+          <span class="project-row__name">{project.name}</span>
+          <span class="project-row__type">{project.type}</span>
+          <span class="project-row__arrow" aria-hidden="true">↗</span>
+        </button>
+      ))}
+    </div>
+
+    <aside class="project-detail" id="project-detail" data-project-detail aria-hidden="true" inert>
+      <div class="project-detail__inner">
+        <header class="project-detail__top">
+          <span data-detail-year></span>
+          <button class="project-detail__close" type="button" data-project-close>
+            <span aria-hidden="true">×</span><span>CLOSE</span>
+          </button>
+        </header>
+
+        <div class="project-detail__content">
+          <p class="project-detail__eyebrow" data-detail-type></p>
+          <h3 id="project-detail-title" data-detail-title></h3>
+          <p class="project-detail__description" data-detail-description></p>
+
+          <figure class="project-detail__media">
+            <div class="project-detail__placeholder" data-detail-placeholder aria-hidden="true">
+              <span>PROJECT</span><span>IMAGE</span>
+            </div>
+            <img data-detail-image alt="" loading="lazy" hidden />
+          </figure>
+
+          <div class="project-detail__bottom">
+            <div class="project-detail__stack">
+              <span class="project-detail__label">TECH STACK</span>
+              <p data-detail-stack></p>
+            </div>
+            <nav class="project-detail__links" aria-label="Project links">
+              <a data-detail-demo hidden target="_blank" rel="noopener noreferrer">Live Demo <span aria-hidden="true">↗</span></a>
+              <a data-detail-source hidden target="_blank" rel="noopener noreferrer">Source Code <span aria-hidden="true">↗</span></a>
+            </nav>
+          </div>
         </div>
-        <p class="work-lede" id="work-lede">
-          Each project has taken me into a new kind of problem, from machine learning to web platforms.
-          {' '}
-          {featuredProjects.map((project, index) => (
-            <>
-              <button type="button" class:list={['pj', { 'is-active': index === 0 }]} data-pj={index} aria-controls={`pj-detail-${index}`} aria-expanded={index === 0 ? 'true' : 'false'}>{project.name}</button><span>, {project.tag}{index < featuredProjects.length - 2 ? ';' : index === featuredProjects.length - 2 ? '; and' : '.'}</span>{' '}
-            </>
-          ))}
-        </p>
-        <div class="work-detail" id="work-detail" aria-live="polite">
-          {featuredProjects.map((project, index) => (
-            <article class:list={['work-detail__item', { 'is-active': index === 0 }]} id={`pj-detail-${index}`} data-pj-detail={index}>
-              <p class="work-detail__meta">{project.meta}</p>
-              <p class="work-detail__stack">{project.stack}</p>
-              <p class="work-detail__text">{project.description}</p>
-              {'link' in project && project.link && (
-                <a class="work-detail__link" href={project.link.href} target="_blank" rel="noopener noreferrer">
-                  {project.link.label} <span aria-hidden="true">↗</span>
-                </a>
-              )}
-            </article>
-          ))}
-        </div>
-         <div class="work__archive"><span>MORE PROJECTS</span><a href={siteProfile.socials.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
-      </section>
+
+        <footer class="project-detail__footer">
+          <span data-detail-count></span>
+          <div>
+            <button type="button" data-detail-prev>← PREV</button>
+            <button type="button" data-detail-next>NEXT →</button>
+          </div>
+        </footer>
+      </div>
+    </aside>
+  </div>
+
+  <div class="work__archive">
+    <span>MORE PROJECTS</span>
+    <a href={siteProfile.socials.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+  </div>
+</section>
 
 <script>
-  // Hover, focus or tap a name in the sentence: its details replace the previous ones.
-  const names = Array.from(document.querySelectorAll<HTMLButtonElement>('.pj'));
-  const items = Array.from(document.querySelectorAll<HTMLElement>('.work-detail__item'));
+  import { featuredProjects } from '../../../../domain/projects/project-catalog';
 
-  function show(index: number): void {
-    names.forEach((button, i) => {
-      button.classList.toggle('is-active', i === index);
-      button.setAttribute('aria-expanded', String(i === index));
+  const root = document.querySelector<HTMLElement>('[data-projects]');
+
+  if (root) {
+    const rows = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-project-row]'));
+    const panel = root.querySelector<HTMLElement>('[data-project-detail]');
+    const closeButton = root.querySelector<HTMLButtonElement>('[data-project-close]');
+    const year = root.querySelector<HTMLElement>('[data-detail-year]');
+    const type = root.querySelector<HTMLElement>('[data-detail-type]');
+    const title = root.querySelector<HTMLElement>('[data-detail-title]');
+    const description = root.querySelector<HTMLElement>('[data-detail-description]');
+    const stack = root.querySelector<HTMLElement>('[data-detail-stack]');
+    const count = root.querySelector<HTMLElement>('[data-detail-count]');
+    const image = root.querySelector<HTMLImageElement>('[data-detail-image]');
+    const placeholder = root.querySelector<HTMLElement>('[data-detail-placeholder]');
+    const demo = root.querySelector<HTMLAnchorElement>('[data-detail-demo]');
+    const source = root.querySelector<HTMLAnchorElement>('[data-detail-source]');
+    let activeIndex = 0;
+    let detailOpen = false;
+    let focusedRow: HTMLButtonElement | null = null;
+
+    function setLink(element: HTMLAnchorElement | null, href?: string) {
+      if (!element) return;
+      if (href) {
+        element.href = href;
+        element.hidden = false;
+      } else {
+        element.removeAttribute('href');
+        element.hidden = true;
+      }
+    }
+
+    function render(index: number) {
+      const project = featuredProjects[index];
+      if (!project || !panel) return;
+
+      activeIndex = index;
+      panel.classList.add('is-changing');
+      if (year) year.textContent = project.year;
+      if (type) type.textContent = project.type;
+      if (title) title.textContent = project.name;
+      if (description) description.textContent = project.description;
+      if (stack) stack.textContent = project.stack;
+      if (count) count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(featuredProjects.length).padStart(2, '0')}`;
+
+      if (project.image && image) {
+        image.src = project.image;
+        image.alt = `${project.name} project screenshot`;
+        image.hidden = false;
+        if (placeholder) placeholder.hidden = true;
+      } else if (image) {
+        image.removeAttribute('src');
+        image.alt = '';
+        image.hidden = true;
+        if (placeholder) placeholder.hidden = false;
+      }
+
+      setLink(demo, project.demo);
+      setLink(source, project.source);
+
+      rows.forEach((row, rowIndex) => {
+        const selected = rowIndex === index;
+        row.classList.toggle('is-active', selected);
+        row.setAttribute('aria-expanded', String(selected && detailOpen));
+      });
+
+      requestAnimationFrame(() => panel.classList.remove('is-changing'));
+    }
+
+    function openDetail(index: number, row: HTMLButtonElement) {
+      if (!panel) return;
+      focusedRow = row;
+      detailOpen = true;
+      root.classList.add('has-open-project');
+      panel.inert = false;
+      panel.setAttribute('aria-hidden', 'false');
+      panel.classList.add('is-open');
+      render(index);
+      if (window.matchMedia('(max-width: 899px)').matches) {
+        panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }
+
+    function closeDetail() {
+      if (!panel) return;
+      detailOpen = false;
+      root.classList.remove('has-open-project');
+      panel.classList.remove('is-open');
+      panel.setAttribute('aria-hidden', 'true');
+      panel.inert = true;
+      rows.forEach((row) => row.setAttribute('aria-expanded', 'false'));
+      focusedRow?.focus({ preventScroll: true });
+    }
+
+    rows.forEach((row, index) => {
+      // while the panel is open, hovering or focusing another row previews it
+      row.addEventListener('pointerenter', () => {
+        if (detailOpen) render(index);
+      });
+      row.addEventListener('focus', () => {
+        if (detailOpen) render(index);
+      });
+      row.addEventListener('click', () => openDetail(index, row));
     });
-    items.forEach((item, i) => item.classList.toggle('is-active', i === index));
-  }
 
-  names.forEach((button) => {
-    const index = Number(button.dataset.pj);
-    button.addEventListener('click', () => show(index));
-    button.addEventListener('focus', () => show(index));
-    // Mouse only; on touch the click above does the job.
-    button.addEventListener('pointerenter', (event) => { if (event.pointerType === 'mouse') show(index); });
-  });
+    closeButton?.addEventListener('click', closeDetail);
+
+    root.querySelector('[data-detail-prev]')?.addEventListener('click', () => {
+      const previous = (activeIndex - 1 + featuredProjects.length) % featuredProjects.length;
+      render(previous);
+    });
+
+    root.querySelector('[data-detail-next]')?.addEventListener('click', () => {
+      render((activeIndex + 1) % featuredProjects.length);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (!detailOpen) return;
+      if (event.key === 'Escape') closeDetail();
+      if (event.key === 'ArrowLeft') render((activeIndex - 1 + featuredProjects.length) % featuredProjects.length);
+      if (event.key === 'ArrowRight') render((activeIndex + 1) % featuredProjects.length);
+    });
+  }
 </script>
