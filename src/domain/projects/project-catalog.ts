@@ -1,91 +1,93 @@
-export const featuredProjects = [
+type ProjectLink = {
+  href: string;
+  label: string;
+};
+
+type Project = {
+  name: string;
+  year: string;
+  type: string;
+  stack: string;
+  description: string;
+  link?: ProjectLink;
+};
+
+export const featuredProjects: readonly Project[] = [
   {
-    name: "Aduan Masyarakat",
-    year: "2023",
-    type: "Web Application",
-    stack: "PHP · Laravel 8 · MySQL",
-    description:
-      "Residents can submit complaints, while administrators and staff manage reports and follow up on their resolution.",
-    // Add a 16:9 thumbnail path here.
-    image: "",
-    demo: "",
-    source: "",
+    name: 'Care Report',
+    year: '2022',
+    type: 'Web application',
+    stack: 'PHP · Laravel 8 · MySQL',
+    description: 'Sistem Pelaporan Aduan Masyarakat. Residents file complaints; staff manage and follow up on reports.',
+    link: {
+      href: 'https://github.com/riotrip/aduan-masyarakat-beta',
+      label: 'View source',
+    },
   },
   {
-    name: "PRESMA",
-    year: "2023",
-    type: "Web Application",
-    stack: "PHP · HTML · CSS",
-    description:
-      "A centralized, structured system for recording and managing student achievements.",
-    image: "",
-    demo: "",
-    source: "",
+    name: 'PRESMA',
+    year: '2024',
+    type: 'Web application',
+    stack: 'PHP · HTML · CSS',
+    link: {
+      href: 'https://github.com/Kiaakk/PBL-PRESMA',
+      label: 'View source',
+    },
+    description: 'Pencatatan Prestasi Mahasiswa (SIPRESMA). A central record of student achievements.',
   },
   {
-    name: "Newsphere",
-    year: "2023",
-    type: "Web Application",
-    stack: "PHP · MongoDB · HTML/CSS · Bootstrap",
-    description:
-      "A news portal with categories and article pages, alongside an admin panel for managing content.",
-    image: "",
-    demo: "",
-    source: "",
+    name: 'Newsphere',
+    year: '2024',
+    type: 'Web application',
+    stack: 'PHP · MongoDB · HTML/CSS · Bootstrap',
+    link: {
+      href: 'https://github.com/clockingoffbye/news-website',
+      label: 'View source',
+    },
+    description: 'A categorized news portal with article pages and an admin panel.',
   },
   {
-    name: "PBL SARPRAS",
-    year: "2024",
-    type: "Web Application",
-    stack: "PHP 8.1 · Laravel 10 · Relational database",
-    description:
-      "Report facility damage, assign technicians, track repair progress, and review handling history.",
-    image: "",
-    demo: "",
-    source: "",
+    name: 'SIPRAK',
+    year: '2025',
+    type: 'Web application',
+    stack: 'PHP 8.1 · Laravel 10 · Relational database',
+    link: {
+      href: 'https://github.com/naufal11705/PBL-SARPRAS',
+      label: 'View source',
+    },
+    description: 'Sistem Manajemen Pelaporan dan Perbaikan Fasilitas Kampus. Report facility damage, assign technicians, and track repairs.',
   },
   {
-    name: "MSJ Rekrutmen",
-    year: "2025",
-    type: "Web Application",
-    stack: "PHP 8.2 · Laravel 12 · Blade",
-    description:
-      "Manage job openings, applications, candidates, and each stage of the selection process.",
-    image: "",
-    demo: "",
-    source: "",
+    name: 'ParisyApp',
+    year: '2025',
+    type: 'Mobile and machine-learning app',
+    stack: 'Flutter/Dart · Flask/Python · Hugging Face · REST API',
+    description: 'Shop agricultural products with image-based product recognition.',
+    link: {
+      href: 'https://www.linkedin.com/posts/rio-tri-prayogo_projectbasedlearning-machinelearning-computervision-activity-7412804238990540800-V-7h',
+      label: 'See the project',
+    },
   },
   {
-    name: "Meda Landing",
-    year: "2025",
-    type: "Landing Page",
-    stack: "Next.js 14 · React 18 · Tailwind CSS",
-    description:
-      "Introduces Meda services, process, products, articles, frequently asked questions, and contact options.",
-    image: "",
-    demo: "",
-    source: "",
+    name: 'MSJ Rekrutmen',
+    year: '2026',
+    type: 'Web application',
+    stack: 'PHP 8.2 · Laravel 12 · Blade',
+    link: {
+      href: 'https://spunindo.com/',
+      label: 'Visit site',
+    },
+    description: 'Manage vacancies, applications, candidates, and selection stages.',
   },
   {
-    name: "WARAS",
-    year: "2025",
-    type: "Web / Mobile App",
-    stack: "Next.js · React · TypeScript · Capacitor",
-    description:
-      "A health application designed for web/PWA and mobile experiences.",
-    image: "",
-    demo: "",
-    source: "",
+    name: 'Meda Landing',
+    year: '2026',
+    type: 'Landing page',
+    stack: 'Next.js 14 · React 18 · Tailwind CSS',
+    description: 'An overview of Meda services, products, articles, and contact details.',
+    link: {
+      href: 'https://meda.technology/',
+      label: 'Visit site',
+    },
   },
-  {
-    name: "Parisy App",
-    year: "2024",
-    type: "Mobile / ML App",
-    stack: "Flutter/Dart · Flask/Python · Hugging Face · REST API",
-    description:
-      "Browse agricultural products, manage a cart, check out, and track orders, with image-based product classification.",
-    image: "",
-    demo: "",
-    source: "",
-  },
-] as const;
+];

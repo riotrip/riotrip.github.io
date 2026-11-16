@@ -1,0 +1,25 @@
+---
+interface Props {
+  pathname: string;
+}
+
+const { pathname } = Astro.props;
+const links = [
+  { label: 'About', href: '/about/' },
+  { label: 'Works', href: '/works/' },
+  { label: 'Experience', href: '/experience/' },
+  { label: 'Contact', href: '/contact/' },
+];
+---
+
+<header class="site-header">
+  <a class="wordmark" href="/" aria-current={pathname === '/' ? 'page' : undefined}>
+    <span class="wordmark-logo" aria-hidden="true"></span>
+    <span class="wordmark-name">Rio Tri<br />Prayogo<span aria-hidden="true">.</span></span>
+  </a>
+  <nav class="site-nav" aria-label="Main navigation">
+    {links.map(({ label, href }) => (
+      <a href={href} aria-current={pathname === href ? 'page' : undefined}>{label}</a>
+    ))}
+  </nav>
+</header>
