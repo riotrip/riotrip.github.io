@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../presentation/layouts/BaseLayout.astro';
+import PageIntro from '../presentation/components/PageIntro.astro';
+import ProjectPlaceholder from '../presentation/features/works/ProjectPlaceholder.astro';
+import { featuredProjects } from '../domain/projects/project-catalog';
+import { projectMedia } from '../presentation/features/works/project-media';
+
+const title = 'Selected Works — Rio Tri Prayogo';
+const description = 'Eight selected web, mobile, and machine-learning projects by Rio Tri Prayogo, with project summaries and technology stacks.';
+const initialProjectMedia = projectMedia[featuredProjects[0].name] ?? [];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Works', path: '/works/' }]}
+>
+  <PageIntro title="Projects" />
+
+  <section class="projects-index" aria-label="Project list">
+    <div class="projects-index__list" role="list">
+      {featuredProjects.map((project, index) => (
+        <article class="projects-index__item" role="listitem">
+          <button
+            class="projects-index__button"
+            type="button"
+            data-project-choice
+            aria-pressed={index === 0 ? 'true' : 'false'}
+            aria-controls="project-detail"
+            data-year={project.year}
+            data-type={project.type}
+            data-description={project.description}
+            data-stack={project.stack}
+            data-link={project.link?.href}
+            data-link-label={project.link?.label}
+            data-images={JSON.stringify(projectMedia[project.name] ?? [])}
+          >
+            <span class="projects-index__copy">
+              <span class="projects-index__title">{project.name}</span>
+              <span class="projects-index__meta">{project.year}</span>
+            </span>
+            <span class="projects-index__indicator" aria-hidden="true">●</span>
+          </button>
+        </article>
+      ))}
+    </div>
+
+    <aside class="project-detail" id="project-detail" aria-live="polite" aria-atomic="true">
+      <div
+        class="project-detail__visual"
+        data-project-visual
+        data-has-images={initialProjectMedia.length ? 'true' : undefined}
+        data-image-count={initialProjectMedia.length ? String(initialProjectMedia.length) : undefined}
+        data-placeholder-variant={featuredProjects[0].type.toLowerCase().includes('mobile') ? 'mobile' : 'web'}
+        aria-hidden="true"
+      >
+        {initialProjectMedia.map((image) => <img src={image.src} width={image.width} height={image.height} alt="" fetchpriority="high" />)}
+        <ProjectPlaceholder
+          variant={featuredProjects[0].type.toLowerCase().includes('mobile') ? 'mobile' : 'web'}
+          hidden={initialProjectMedia.length > 0}
+        />
+      </div>
+      <div class="project-detail__copy">
+        <p class="project-detail__description" data-detail-description>{featuredProjects[0].description}</p>
+        <p class="project-detail__stack" data-detail-stack>{featuredProjects[0].stack}</p>
+        <a
+          class="project-detail__link"
+          data-detail-link
+          href={featuredProjects[0].link?.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          hidden={!featuredProjects[0].link}
+        >{featuredProjects[0].link?.label}</a>
+      </div>
+    </aside>
+  </section>
+
+  <script src="../presentation/features/works/project-selector.ts"></script>
+</BaseLayout>

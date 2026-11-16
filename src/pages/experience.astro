@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../presentation/layouts/BaseLayout.astro';
+import PageIntro from '../presentation/components/PageIntro.astro';
+import { experienceGroups } from '../domain/experience/experience-catalog';
+
+const title = 'Experience — Rio Tri Prayogo';
+const description = 'Professional, campus, and volunteer experience of Rio Tri Prayogo across web development and student organizations.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Experience', path: '/experience/' }]}
+>
+  <PageIntro title="Experience" />
+
+  <section class="experience-list" aria-label="Work and community experience">
+    {experienceGroups.map((group) => (
+      <section class="experience-group" aria-labelledby={`group-${group.entries[0].id}`}>
+        <h2 id={`group-${group.entries[0].id}`}>{group.label}</h2>
+        <ol class="experience-entries">
+          {group.entries.map((entry) => (
+            <li class="experience-entry">
+              {entry.date ? <time>{entry.date}</time> : <span aria-hidden="true"></span>}
+              <div>
+                <h3>{entry.title}</h3>
+                <p class="organization">{entry.subtitle}</p>
+                {entry.summary && <p class="summary">{entry.summary}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+  </section>
+</BaseLayout>

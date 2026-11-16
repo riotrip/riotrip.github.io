@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../presentation/layouts/BaseLayout.astro';
+import PageIntro from '../presentation/components/PageIntro.astro';
+import { siteProfile } from '../domain/portfolio/site-profile';
+
+const title = 'Contact Rio Tri Prayogo';
+const description = 'Get in touch with Rio Tri Prayogo about web and mobile development, collaboration, or a project.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact/' }]}
+>
+  <PageIntro title="Contact" />
+
+  <section class="contact-content" aria-label="Contact details">
+    <a class="contact-email" href={`mailto:${siteProfile.email}`} aria-label={siteProfile.email}>{siteProfile.email}</a>
+    <nav class="contact-socials" aria-label="Social profiles">
+      <a href={siteProfile.socials.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <a href={siteProfile.socials.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      <a href={siteProfile.socials.instagram} target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+    </nav>
+  </section>
+</BaseLayout>

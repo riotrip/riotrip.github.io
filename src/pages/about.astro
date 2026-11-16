@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../presentation/layouts/BaseLayout.astro';
+import PageIntro from '../presentation/components/PageIntro.astro';
+import { siteProfile } from '../domain/portfolio/site-profile';
+
+const title = 'About Rio Tri Prayogo — Developer';
+const description = 'Learn about Rio Tri Prayogo, an Informatics Engineering student building web and mobile products and exploring machine learning and ESP32 hardware.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'About', path: '/about/' }]}
+>
+  <PageIntro title="About" />
+
+  <section class="about-grid" aria-label="About Rio Tri Prayogo">
+    <figure class="about-portrait">
+      <div class="about-portrait__frame">
+        <img src="/images/profile/profile.webp" alt="Portrait of Rio Tri Prayogo" width="756" height="1344" fetchpriority="high" />
+      </div>
+    </figure>
+
+    <div class="about-copy">
+      {siteProfile.biography.map((paragraph) => <p>{paragraph}</p>)}
+
+      <section class="detail-section" aria-labelledby="stack-title">
+        <h2 id="stack-title">Tools</h2>
+        <ul class="stack-list">
+          {siteProfile.stack.map((technology) => <li>{technology}</li>)}
+        </ul>
+      </section>
+
+      <section class="detail-section" aria-labelledby="education-title">
+        <h2 id="education-title">Education</h2>
+        <ul class="education-list">
+          {siteProfile.education.map((item) => (
+            <li>
+              <strong>{item.school}</strong>
+              <span>{item.dates}</span>
+              <small>{item.program}</small>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

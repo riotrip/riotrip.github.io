@@ -15,11 +15,7 @@ docs/
 .playwright-mcp/
 *.local
 
-# Local-only context and tooling
-AGENTS.md
-.agents/
-.agent/
-.impeccable/
+# Local-only files
 PRODUCT*.md
 tests/
 
